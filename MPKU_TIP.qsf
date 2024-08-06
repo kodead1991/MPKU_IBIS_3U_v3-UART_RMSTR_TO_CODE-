@@ -135,4 +135,7 @@ set_global_assignment -name VHDL_FILE FREQ_4kHz_BLOCK.vhd
 set_global_assignment -name VHDL_FILE FREQ_8kHz_BLOCK.vhd
 set_global_assignment -name QIP_FILE MUX_1WIRE.qip
 set_global_assignment -name VHDL_FILE ONE_WIRE_EN_BLOCK.vhd
+set_global_assignment -name QIP_FILE DPRAM_1WIRE_ID.qip
+set_global_assignment -name QIP_FILE CONST_x3910.qip
+set_global_assignment -name QIP_FILE CONST_x3940.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
