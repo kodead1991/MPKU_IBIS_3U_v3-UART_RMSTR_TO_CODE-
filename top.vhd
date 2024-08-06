@@ -1,0 +1,1314 @@
+-- Copyright (C) 1991-2010 Altera Corporation
+-- Your use of Altera Corporation's design tools, logic functions 
+-- and other software and tools, and its AMPP partner logic 
+-- functions, and any output files from any of the foregoing 
+-- (including device programming or simulation files), and any 
+-- associated documentation or information are expressly subject 
+-- to the terms and conditions of the Altera Program License 
+-- Subscription Agreement, Altera MegaCore Function License 
+-- Agreement, or other applicable license agreement, including, 
+-- without limitation, that your use is for the sole purpose of 
+-- programming logic devices manufactured by Altera and sold by 
+-- Altera or its authorized distributors.  Please refer to the 
+-- applicable agreement for further details.
+
+-- PROGRAM		"Quartus II"
+-- VERSION		"Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition"
+-- CREATED		"Thu Jul 04 15:49:43 2024"
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all; 
+
+LIBRARY work;
+
+ENTITY top IS 
+	PORT
+	(
+		A0 :  IN  STD_LOGIC;
+		A1 :  IN  STD_LOGIC;
+		A2 :  IN  STD_LOGIC;
+		A3 :  IN  STD_LOGIC;
+		A4 :  IN  STD_LOGIC;
+		A5 :  IN  STD_LOGIC;
+		A6 :  IN  STD_LOGIC;
+		A7 :  IN  STD_LOGIC;
+		A8 :  IN  STD_LOGIC;
+		A9 :  IN  STD_LOGIC;
+		A10 :  IN  STD_LOGIC;
+		A11 :  IN  STD_LOGIC;
+		A12 :  IN  STD_LOGIC;
+		A13 :  IN  STD_LOGIC;
+		A14 :  IN  STD_LOGIC;
+		IO9 :  IN  STD_LOGIC;
+		IO10 :  IN  STD_LOGIC;
+		IO11 :  IN  STD_LOGIC;
+		IO12 :  IN  STD_LOGIC;
+		IO13 :  IN  STD_LOGIC;
+		IO14 :  IN  STD_LOGIC;
+		IO15 :  IN  STD_LOGIC;
+		IO16 :  IN  STD_LOGIC;
+		IO17 :  IN  STD_LOGIC;
+		IO18 :  IN  STD_LOGIC;
+		IO19 :  IN  STD_LOGIC;
+		IO20 :  IN  STD_LOGIC;
+		IO21 :  IN  STD_LOGIC;
+		IO23 :  IN  STD_LOGIC;
+		IO24 :  IN  STD_LOGIC;
+		IO29 :  IN  STD_LOGIC;
+		IO30 :  IN  STD_LOGIC;
+		IO31 :  IN  STD_LOGIC;
+		IO32 :  IN  STD_LOGIC;
+		IO33 :  IN  STD_LOGIC;
+		IO34 :  IN  STD_LOGIC;
+		IO35 :  IN  STD_LOGIC;
+		IO36 :  IN  STD_LOGIC;
+		IO37 :  IN  STD_LOGIC;
+		IO38 :  IN  STD_LOGIC;
+		IO39 :  IN  STD_LOGIC;
+		IO40 :  IN  STD_LOGIC;
+		IO41 :  IN  STD_LOGIC;
+		IO42 :  IN  STD_LOGIC;
+		IO43 :  IN  STD_LOGIC;
+		IO44 :  IN  STD_LOGIC;
+		IO45 :  IN  STD_LOGIC;
+		IO46 :  IN  STD_LOGIC;
+		IO47 :  IN  STD_LOGIC;
+		IO48 :  IN  STD_LOGIC;
+		IO49 :  IN  STD_LOGIC;
+		IO50 :  IN  STD_LOGIC;
+		IO53 :  IN  STD_LOGIC;
+		RO6 :  IN  STD_LOGIC;
+		CLK_1 :  IN  STD_LOGIC;
+		MOSI_1 :  IN  STD_LOGIC;
+		SS_1 :  IN  STD_LOGIC;
+		RO5 :  IN  STD_LOGIC;
+		RO1 :  IN  STD_LOGIC;
+		RO2 :  IN  STD_LOGIC;
+		RO3 :  IN  STD_LOGIC;
+		RO4 :  IN  STD_LOGIC;
+		RO9 :  IN  STD_LOGIC;
+		RO10 :  IN  STD_LOGIC;
+		S1 :  IN  STD_LOGIC;
+		S2 :  IN  STD_LOGIC;
+		SW_1_W_I :  IN  STD_LOGIC;
+		SW_2_W_I :  IN  STD_LOGIC;
+		A0_MARK_SEC :  IN  STD_LOGIC;
+		A1_MARK_SEC :  IN  STD_LOGIC;
+		MHz_36_864 :  IN  STD_LOGIC;
+		DEV_Cle :  IN  STD_LOGIC;
+		DEV_OE :  IN  STD_LOGIC;
+		RDY_An :  IN  STD_LOGIC;
+		MHz_18_432 :  IN  STD_LOGIC;
+		EXT_CLK :  IN  STD_LOGIC;
+		CLK_25MHz2 :  IN  STD_LOGIC;
+		WE_An :  IN  STD_LOGIC;
+		OE :  IN  STD_LOGIC;
+		CS3 :  IN  STD_LOGIC;
+		DQMBn0 :  IN  STD_LOGIC;
+		DQMBn1 :  IN  STD_LOGIC;
+		DQMBn2 :  IN  STD_LOGIC;
+		DQMBn3 :  IN  STD_LOGIC;
+		IO22 :  IN  STD_LOGIC;
+		RO7 :  IN  STD_LOGIC;
+		RO8 :  IN  STD_LOGIC;
+		NRE5 :  IN  STD_LOGIC;
+		IO54 :  IN  STD_LOGIC;
+		IO27 :  IN  STD_LOGIC;
+		IO28 :  IN  STD_LOGIC;
+		D1 :  IN  STD_LOGIC;
+		D2 :  IN  STD_LOGIC;
+		D3 :  IN  STD_LOGIC;
+		D0 :  IN  STD_LOGIC;
+		D4 :  IN  STD_LOGIC;
+		D5 :  IN  STD_LOGIC;
+		D6 :  IN  STD_LOGIC;
+		D7 :  IN  STD_LOGIC;
+		D8 :  IN  STD_LOGIC;
+		D9 :  IN  STD_LOGIC;
+		D10 :  IN  STD_LOGIC;
+		D11 :  IN  STD_LOGIC;
+		D12 :  IN  STD_LOGIC;
+		D13 :  IN  STD_LOGIC;
+		D14 :  IN  STD_LOGIC;
+		D15 :  IN  STD_LOGIC;
+		D16 :  IN  STD_LOGIC;
+		D17 :  IN  STD_LOGIC;
+		D18 :  IN  STD_LOGIC;
+		D19 :  IN  STD_LOGIC;
+		D20 :  IN  STD_LOGIC;
+		D21 :  IN  STD_LOGIC;
+		D22 :  IN  STD_LOGIC;
+		D23 :  IN  STD_LOGIC;
+		D24 :  IN  STD_LOGIC;
+		D25 :  IN  STD_LOGIC;
+		D26 :  IN  STD_LOGIC;
+		D27 :  IN  STD_LOGIC;
+		D28 :  IN  STD_LOGIC;
+		D29 :  IN  STD_LOGIC;
+		D30 :  IN  STD_LOGIC;
+		D31 :  IN  STD_LOGIC;
+		DI6 :  OUT  STD_LOGIC;
+		INT0 :  OUT  STD_LOGIC;
+		INT1 :  OUT  STD_LOGIC;
+		INT2 :  OUT  STD_LOGIC;
+		INT3 :  OUT  STD_LOGIC;
+		INT4 :  OUT  STD_LOGIC;
+		INT5 :  OUT  STD_LOGIC;
+		MISO_1 :  OUT  STD_LOGIC;
+		IRQ_1 :  OUT  STD_LOGIC;
+		ResetP :  OUT  STD_LOGIC;
+		DI5 :  OUT  STD_LOGIC;
+		DI1 :  OUT  STD_LOGIC;
+		DI2 :  OUT  STD_LOGIC;
+		NRE1 :  OUT  STD_LOGIC;
+		DI3 :  OUT  STD_LOGIC;
+		DI4 :  OUT  STD_LOGIC;
+		NRE2 :  OUT  STD_LOGIC;
+		DI9 :  OUT  STD_LOGIC;
+		DI10 :  OUT  STD_LOGIC;
+		NRE3 :  OUT  STD_LOGIC;
+		GAP :  OUT  STD_LOGIC;
+		GA0 :  OUT  STD_LOGIC;
+		GA1 :  OUT  STD_LOGIC;
+		GA2 :  OUT  STD_LOGIC;
+		GA3 :  OUT  STD_LOGIC;
+		GA4 :  OUT  STD_LOGIC;
+		SM1P_OR_1WIRE_O :  OUT  STD_LOGIC;
+		SM2P_OR_1WIRE_O :  OUT  STD_LOGIC;
+		SW_1_W_O :  OUT  STD_LOGIC;
+		SW_2_W_O :  OUT  STD_LOGIC;
+		IO1 :  OUT  STD_LOGIC;
+		IO2 :  OUT  STD_LOGIC;
+		IO3 :  OUT  STD_LOGIC;
+		IO4 :  OUT  STD_LOGIC;
+		IO5 :  OUT  STD_LOGIC;
+		IO6 :  OUT  STD_LOGIC;
+		IO7 :  OUT  STD_LOGIC;
+		IO8 :  OUT  STD_LOGIC;
+		IO26 :  OUT  STD_LOGIC;
+		DI7 :  OUT  STD_LOGIC;
+		NRE4 :  OUT  STD_LOGIC;
+		DI8 :  OUT  STD_LOGIC;
+		IO25 :  OUT  STD_LOGIC;
+		IO55 :  OUT  STD_LOGIC;
+		IO56 :  OUT  STD_LOGIC;
+		IO57 :  OUT  STD_LOGIC;
+		IO58 :  OUT  STD_LOGIC;
+		IO51 :  OUT  STD_LOGIC;
+		IO52 :  OUT  STD_LOGIC;
+		IO60 :  OUT  STD_LOGIC;
+		IO59 :  OUT  STD_LOGIC
+	);
+END top;
+
+ARCHITECTURE bdf_type OF top IS 
+
+COMPONENT start_init_block
+	PORT(i_Clk : IN STD_LOGIC;
+		 o_EN : OUT STD_LOGIC
+	);
+END COMPONENT;
+
+COMPONENT const_x2000
+	PORT(		 result : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT pk_list_block
+	PORT(i_Clk : IN STD_LOGIC;
+		 i_En : IN STD_LOGIC;
+		 i_Addr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 i_BaseAddr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 i_Data : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		 o_En : OUT STD_LOGIC;
+		 o_A1 : OUT STD_LOGIC;
+		 o_A2 : OUT STD_LOGIC;
+		 o_A3 : OUT STD_LOGIC;
+		 o_A4 : OUT STD_LOGIC
+	);
+END COMPONENT;
+
+COMPONENT mux_pk_len
+	PORT(data0x : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 data10x : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 data11x : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 data12x : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 data1x : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 data2x : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 data3x : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 data4x : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 data5x : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 data6x : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 data7x : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 data8x : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 data9x : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 sel : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		 result : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT const_x3000
+	PORT(		 result : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT pku_in_block
+	PORT(i_Clk : IN STD_LOGIC;
+		 i_kHz : IN STD_LOGIC;
+		 i_PKU : IN STD_LOGIC;
+		 i_Rst : IN STD_LOGIC;
+		 o_En : OUT STD_LOGIC;
+		 o_PkLen : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT pk_len_block
+	PORT(i_Clk : IN STD_LOGIC;
+		 i_En : IN STD_LOGIC;
+		 i_Addr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 i_BaseAddr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 i_Data : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		 o_Pk0_Len : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 o_Pk10_Len : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 o_Pk11_Len : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 o_Pk1_Len : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 o_Pk2_Len : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 o_Pk3_Len : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 o_Pk4_Len : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 o_Pk5_Len : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 o_Pk6_Len : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 o_Pk7_Len : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 o_Pk8_Len : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 o_Pk9_Len : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT const_x2800
+	PORT(		 result : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT emu_block
+	PORT(i_Clk : IN STD_LOGIC;
+		 i_WE : IN STD_LOGIC;
+		 i_Addr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 i_BaseAddr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 i_Data : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		 o_EMU_Mode : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT freq_1khz_block
+	PORT(i_Clk : IN STD_LOGIC;
+		 o_kHz : OUT STD_LOGIC
+	);
+END COMPONENT;
+
+COMPONENT uart_module
+	PORT(MHz_25 : IN STD_LOGIC;
+		 DATA_WR_READY : IN STD_LOGIC;
+		 DATA_RE_READY : IN STD_LOGIC;
+		 RO_OSN : IN STD_LOGIC;
+		 RO_REZ : IN STD_LOGIC;
+		 BASE_ADDR : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 DATA_FROM_MPU : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		 DQMBn : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		 MPU_ADDR : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 DI_OSN : OUT STD_LOGIC;
+		 DI_REZ : OUT STD_LOGIC;
+		 NRE : OUT STD_LOGIC;
+		 DATA_TO_MPU : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		 TEST : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT const_x4000
+	PORT(		 result : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT pk_out_block
+	PORT(i_Clk : IN STD_LOGIC;
+		 i_kHz : IN STD_LOGIC;
+		 i_En : IN STD_LOGIC;
+		 i_PkLen : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 o_Pk : OUT STD_LOGIC
+	);
+END COMPONENT;
+
+COMPONENT one_wire_block_v2
+	PORT(i_Clk : IN STD_LOGIC;
+		 i_RE : IN STD_LOGIC;
+		 i_WE : IN STD_LOGIC;
+		 i_1WIRE : IN STD_LOGIC;
+		 i_Addr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 i_BaseAddr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 i_Data : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		 o_1WIRE : OUT STD_LOGIC;
+		 o_Data : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		 o_Test : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT freq_1mhz_block
+	PORT(i_Clk : IN STD_LOGIC;
+		 o_MHz : OUT STD_LOGIC
+	);
+END COMPONENT;
+
+COMPONENT one_wire_module
+	PORT(MHz_25 : IN STD_LOGIC;
+		 MHz : IN STD_LOGIC;
+		 kHz : IN STD_LOGIC;
+		 DATA_WR_READY : IN STD_LOGIC;
+		 DATA_RE_READY : IN STD_LOGIC;
+		 OW_IN : IN STD_LOGIC;
+		 BASE_ADDR : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 DATA_FROM_MPU : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		 MPU_ADDR : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 OW_OUT : OUT STD_LOGIC;
+		 DATA_TO_MPU : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT const_x3800
+	PORT(		 result : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT const_x4800
+	PORT(		 result : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT ds18b20_sim
+	PORT(pwrin : IN STD_LOGIC;
+		 din : IN STD_LOGIC;
+		 dio : INOUT STD_LOGIC;
+		 dout : OUT STD_LOGIC
+	);
+END COMPONENT;
+
+COMPONENT const_x0
+	PORT(		 result : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT tri_32
+	PORT(enabledt : IN STD_LOGIC;
+		 enabletr : IN STD_LOGIC;
+		 data : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		 tridata : INOUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+		 result : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT pku_data_block
+	PORT(i_Addr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 i_BaseAddr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		 i_PKU0_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU10_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU11_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU12_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU13_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU14_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU15_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU16_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU17_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU18_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU19_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU1_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU20_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU21_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU22_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU23_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU2_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU3_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU4_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU5_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU6_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU7_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU8_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU9_LEN : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+		 i_PKU_LIST : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
+		 o_RE : OUT STD_LOGIC;
+		 o_Rst : OUT STD_LOGIC;
+		 o_Data : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT const_x1000
+	PORT(		 result : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT const_x1800
+	PORT(		 result : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT tri31_1
+	PORT(enabledt : IN STD_LOGIC;
+		 data : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		 tridata : INOUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT const_x800
+	PORT(		 result : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+	);
+END COMPONENT;
+
+SIGNAL	DATA_FROM_MPU :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL	DATA_RE_READY :  STD_LOGIC;
+SIGNAL	DATA_TO_MPU :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL	DATA_WR_READY :  STD_LOGIC;
+SIGNAL	din :  STD_LOGIC;
+SIGNAL	dout :  STD_LOGIC;
+SIGNAL	DQMBn :  STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL	EMU_MODE :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL	GND :  STD_LOGIC;
+SIGNAL	kHz :  STD_LOGIC;
+SIGNAL	Mhz :  STD_LOGIC;
+SIGNAL	MHz_25 :  STD_LOGIC;
+SIGNAL	MHz_EXT :  STD_LOGIC;
+SIGNAL	MPU_ADDR :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	MPU_DATA :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL	NCS :  STD_LOGIC;
+SIGNAL	nE1 :  STD_LOGIC;
+SIGNAL	nE2 :  STD_LOGIC;
+SIGNAL	nMHz_25 :  STD_LOGIC;
+SIGNAL	NRE :  STD_LOGIC;
+SIGNAL	NWE :  STD_LOGIC;
+SIGNAL	PK0 :  STD_LOGIC;
+SIGNAL	PK0_LEN :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PK1 :  STD_LOGIC;
+SIGNAL	PK10_LEN :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PK11_LEN :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PK1_LEN :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PK2_LEN :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PK3_LEN :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PK4_LEN :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PK5_LEN :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PK6_LEN :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PK7_LEN :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PK8_LEN :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PK9_LEN :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PK_A0 :  STD_LOGIC;
+SIGNAL	PK_A1 :  STD_LOGIC;
+SIGNAL	PK_A2 :  STD_LOGIC;
+SIGNAL	PK_A3 :  STD_LOGIC;
+SIGNAL	PK_A4 :  STD_LOGIC;
+SIGNAL	PK_A5 :  STD_LOGIC;
+SIGNAL	PK_A6 :  STD_LOGIC;
+SIGNAL	PK_A7 :  STD_LOGIC;
+SIGNAL	PK_BASE_ADDR :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	PK_EN :  STD_LOGIC_VECTOR(0 TO 0);
+SIGNAL	PK_LEN_SEL :  STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL	PK_START :  STD_LOGIC;
+SIGNAL	PKU0 :  STD_LOGIC;
+SIGNAL	PKU0_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU1 :  STD_LOGIC;
+SIGNAL	PKU10 :  STD_LOGIC;
+SIGNAL	PKU10_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU11 :  STD_LOGIC;
+SIGNAL	PKU11_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU12 :  STD_LOGIC;
+SIGNAL	PKU12_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU13 :  STD_LOGIC;
+SIGNAL	PKU13_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU14 :  STD_LOGIC;
+SIGNAL	PKU14_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU15 :  STD_LOGIC;
+SIGNAL	PKU15_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU16 :  STD_LOGIC;
+SIGNAL	PKU16_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU17 :  STD_LOGIC;
+SIGNAL	PKU17_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU18 :  STD_LOGIC;
+SIGNAL	PKU18_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU19 :  STD_LOGIC;
+SIGNAL	PKU19_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU1_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU2 :  STD_LOGIC;
+SIGNAL	PKU20 :  STD_LOGIC;
+SIGNAL	PKU20_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU21 :  STD_LOGIC;
+SIGNAL	PKU21_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU22 :  STD_LOGIC;
+SIGNAL	PKU22_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU23 :  STD_LOGIC;
+SIGNAL	PKU23_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU2_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU3 :  STD_LOGIC;
+SIGNAL	PKU3_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU4 :  STD_LOGIC;
+SIGNAL	PKU4_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU5 :  STD_LOGIC;
+SIGNAL	PKU5_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU6 :  STD_LOGIC;
+SIGNAL	PKU6_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU7 :  STD_LOGIC;
+SIGNAL	PKU7_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU8 :  STD_LOGIC;
+SIGNAL	PKU8_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU9 :  STD_LOGIC;
+SIGNAL	PKU9_Len :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	PKU_LIST :  STD_LOGIC_VECTOR(23 DOWNTO 0);
+SIGNAL	PKU_LIST_ADDR_EN :  STD_LOGIC;
+SIGNAL	PKU_LIST_RST :  STD_LOGIC;
+SIGNAL	RST :  STD_LOGIC;
+SIGNAL	SPI_CLK :  STD_LOGIC;
+SIGNAL	SPI_MOSI :  STD_LOGIC;
+SIGNAL	SPI_SS :  STD_LOGIC;
+SIGNAL	TEST :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	U0_BASE_ADDR :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	U1_BASE_ADDR :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	U2_BASE_ADDR :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	U3_BASE_ADDR :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	U4_BASE_ADDR :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	VCC :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC_VECTOR(9 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_2 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_4 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_5 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_14 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_6 :  STD_LOGIC;
+SIGNAL	DFF_inst57 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_7 :  STD_LOGIC_VECTOR(15 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_8 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_9 :  STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_10 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_15 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_11 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_16 :  STD_LOGIC;
+SIGNAL	DFF_inst92 :  STD_LOGIC;
+
+
+BEGIN 
+SYNTHESIZED_WIRE_4 <= '1';
+
+
+
+
+b2v_inst1 : start_init_block
+PORT MAP(i_Clk => CLK_25MHz2,
+		 o_EN => MHz_25);
+
+
+b2v_inst10 : const_x2000
+PORT MAP(		 result => U4_BASE_ADDR);
+
+PK_A0 <= PK_LEN_SEL(0);
+
+
+PK_A4 <= PK_LEN_SEL(0);
+
+
+PK_A1 <= PK_LEN_SEL(1);
+
+
+PK_A5 <= PK_LEN_SEL(1);
+
+
+PK_A2 <= PK_LEN_SEL(2);
+
+
+
+b2v_inst11 : pk_list_block
+PORT MAP(i_Clk => GND,
+		 i_En => DATA_WR_READY,
+		 i_Addr => MPU_ADDR,
+		 i_BaseAddr => PK_BASE_ADDR,
+		 i_Data => DATA_FROM_MPU,
+		 o_En => SYNTHESIZED_WIRE_8,
+		 o_A1 => PK_LEN_SEL(0),
+		 o_A2 => PK_LEN_SEL(1),
+		 o_A3 => PK_LEN_SEL(2),
+		 o_A4 => PK_LEN_SEL(3));
+
+PK_A6 <= PK_LEN_SEL(2);
+
+
+PK_A3 <= PK_LEN_SEL(3);
+
+
+PK_A7 <= PK_LEN_SEL(3);
+
+
+
+b2v_inst113 : mux_pk_len
+PORT MAP(data0x => U0_BASE_ADDR(9 DOWNTO 0),
+		 data10x => PK9_LEN,
+		 data11x => PK10_LEN,
+		 data12x => PK11_LEN,
+		 data1x => PK0_LEN,
+		 data2x => PK1_LEN,
+		 data3x => PK2_LEN,
+		 data4x => PK3_LEN,
+		 data5x => PK4_LEN,
+		 data6x => PK5_LEN,
+		 data7x => PK6_LEN,
+		 data8x => PK7_LEN,
+		 data9x => PK8_LEN,
+		 sel => PK_LEN_SEL,
+		 result => SYNTHESIZED_WIRE_1);
+
+
+b2v_inst114 : const_x3000
+PORT MAP(		 result => SYNTHESIZED_WIRE_7);
+
+
+b2v_inst12 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU0,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(0),
+		 o_PkLen => PKU0_Len);
+
+
+
+b2v_inst15 : pk_len_block
+PORT MAP(i_Clk => GND,
+		 i_En => DATA_WR_READY,
+		 i_Addr => MPU_ADDR,
+		 i_BaseAddr => PK_BASE_ADDR,
+		 i_Data => DATA_FROM_MPU,
+		 o_Pk0_Len => PK0_LEN,
+		 o_Pk10_Len => PK10_LEN,
+		 o_Pk11_Len => PK11_LEN,
+		 o_Pk1_Len => PK1_LEN,
+		 o_Pk2_Len => PK2_LEN,
+		 o_Pk3_Len => PK3_LEN,
+		 o_Pk4_Len => PK4_LEN,
+		 o_Pk5_Len => PK5_LEN,
+		 o_Pk6_Len => PK6_LEN,
+		 o_Pk7_Len => PK7_LEN,
+		 o_Pk8_Len => PK8_LEN,
+		 o_Pk9_Len => PK9_LEN);
+
+
+b2v_inst16 : const_x2800
+PORT MAP(		 result => PK_BASE_ADDR);
+
+
+SYNTHESIZED_WIRE_5 <= NOT(RST AND DATA_RE_READY);
+
+
+b2v_inst18 : emu_block
+PORT MAP(i_Clk => MHz_25,
+		 i_WE => DATA_WR_READY,
+		 i_Addr => MPU_ADDR,
+		 i_BaseAddr => SYNTHESIZED_WIRE_0,
+		 i_Data => DATA_FROM_MPU);
+
+
+b2v_inst19 : freq_1khz_block
+PORT MAP(i_Clk => MHz_25,
+		 o_kHz => kHz);
+
+
+b2v_inst2 : uart_module
+PORT MAP(MHz_25 => GND,
+		 DATA_WR_READY => DATA_WR_READY,
+		 DATA_RE_READY => DATA_RE_READY,
+		 RO_OSN => RO1,
+		 RO_REZ => RO2,
+		 BASE_ADDR => U0_BASE_ADDR,
+		 DATA_FROM_MPU => DATA_FROM_MPU,
+		 DQMBn => DQMBn,
+		 MPU_ADDR => MPU_ADDR,
+		 DI_OSN => DI1,
+		 DI_REZ => DI2,
+		 NRE => NRE1,
+		 DATA_TO_MPU => DATA_TO_MPU);
+
+
+b2v_inst21 : const_x4000
+PORT MAP(		 result => SYNTHESIZED_WIRE_3);
+
+
+b2v_inst22 : pk_out_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_En => PK_START,
+		 i_PkLen => SYNTHESIZED_WIRE_1,
+		 o_Pk => SYNTHESIZED_WIRE_16);
+
+
+b2v_inst23 : one_wire_block_v2
+PORT MAP(i_Clk => MHz_25,
+		 i_RE => DATA_RE_READY,
+		 i_WE => DATA_WR_READY,
+		 i_1WIRE => dout,
+		 i_Addr => MPU_ADDR,
+		 i_BaseAddr => SYNTHESIZED_WIRE_2,
+		 i_Data => DATA_FROM_MPU,
+		 o_1WIRE => din,
+		 o_Data => DATA_TO_MPU);
+
+
+b2v_inst24 : freq_1mhz_block
+PORT MAP(i_Clk => MHz_25,
+		 o_MHz => Mhz);
+
+
+b2v_inst25 : one_wire_module
+PORT MAP(MHz_25 => GND,
+		 MHz => Mhz,
+		 kHz => kHz,
+		 DATA_WR_READY => DATA_WR_READY,
+		 DATA_RE_READY => DATA_RE_READY,
+		 OW_IN => SW_1_W_I,
+		 BASE_ADDR => SYNTHESIZED_WIRE_3,
+		 DATA_FROM_MPU => DATA_FROM_MPU,
+		 MPU_ADDR => MPU_ADDR,
+		 OW_OUT => SW_1_W_O,
+		 DATA_TO_MPU => DATA_TO_MPU);
+
+
+b2v_inst26 : const_x3800
+PORT MAP(		 result => SYNTHESIZED_WIRE_0);
+
+
+b2v_inst27 : const_x4800
+PORT MAP(		 result => SYNTHESIZED_WIRE_2);
+
+
+b2v_inst28 : ds18b20_sim
+PORT MAP(pwrin => VCC,
+		 din => din,
+		 dout => dout);
+
+
+b2v_inst3 : uart_module
+PORT MAP(MHz_25 => GND,
+		 DATA_WR_READY => DATA_WR_READY,
+		 DATA_RE_READY => DATA_RE_READY,
+		 RO_OSN => RO3,
+		 RO_REZ => RO4,
+		 BASE_ADDR => U1_BASE_ADDR,
+		 DATA_FROM_MPU => DATA_FROM_MPU,
+		 DQMBn => DQMBn,
+		 MPU_ADDR => MPU_ADDR,
+		 DI_OSN => DI3,
+		 DI_REZ => DI4,
+		 NRE => NRE2,
+		 DATA_TO_MPU => DATA_TO_MPU);
+
+
+b2v_inst36 : const_x0
+PORT MAP(		 result => U0_BASE_ADDR);
+
+
+b2v_inst4 : tri_32
+PORT MAP(enabledt => DATA_RE_READY,
+		 enabletr => SYNTHESIZED_WIRE_4,
+		 data => DATA_TO_MPU,
+		 tridata => MPU_DATA,
+		 result => DATA_FROM_MPU);
+
+
+DATA_WR_READY <= NOT(NCS OR NWE);
+
+
+DATA_RE_READY <= NOT(NCS OR NRE);
+
+
+b2v_inst5 : uart_module
+PORT MAP(MHz_25 => GND,
+		 DATA_WR_READY => DATA_WR_READY,
+		 DATA_RE_READY => DATA_RE_READY,
+		 RO_OSN => RO5,
+		 RO_REZ => RO6,
+		 BASE_ADDR => U2_BASE_ADDR,
+		 DATA_FROM_MPU => DATA_FROM_MPU,
+		 DQMBn => DQMBn,
+		 MPU_ADDR => MPU_ADDR,
+		 DI_OSN => DI5,
+		 DI_REZ => DI6,
+		 NRE => NRE3,
+		 DATA_TO_MPU => DATA_TO_MPU);
+
+
+
+
+b2v_inst55 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU1,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(1),
+		 o_PkLen => PKU1_Len);
+
+
+PROCESS(MHz_25)
+BEGIN
+IF (RISING_EDGE(MHz_25)) THEN
+	SYNTHESIZED_WIRE_14 <= SYNTHESIZED_WIRE_5;
+END IF;
+END PROCESS;
+
+
+PROCESS(MHz_25)
+BEGIN
+IF (RISING_EDGE(MHz_25)) THEN
+	DFF_inst57 <= SYNTHESIZED_WIRE_14;
+END IF;
+END PROCESS;
+
+
+DQMBn(0) <= NOT(DQMBn0);
+
+
+
+DQMBn(2) <= NOT(DQMBn2);
+
+
+
+b2v_inst6 : uart_module
+PORT MAP(MHz_25 => GND,
+		 DATA_WR_READY => DATA_WR_READY,
+		 DATA_RE_READY => DATA_RE_READY,
+		 RO_OSN => RO7,
+		 RO_REZ => RO8,
+		 BASE_ADDR => U3_BASE_ADDR,
+		 DATA_FROM_MPU => DATA_FROM_MPU,
+		 DQMBn => DQMBn,
+		 MPU_ADDR => MPU_ADDR,
+		 DI_OSN => DI7,
+		 DI_REZ => DI8,
+		 NRE => NRE4,
+		 DATA_TO_MPU => DATA_TO_MPU);
+
+
+
+DQMBn(1) <= NOT(DQMBn1);
+
+
+
+PKU_LIST_RST <= SYNTHESIZED_WIRE_14 AND SYNTHESIZED_WIRE_6;
+
+
+SYNTHESIZED_WIRE_6 <= NOT(DFF_inst57);
+
+
+
+b2v_inst65 : pku_data_block
+PORT MAP(i_Addr => MPU_ADDR,
+		 i_BaseAddr => SYNTHESIZED_WIRE_7,
+		 i_PKU0_LEN => PKU0_Len,
+		 i_PKU10_LEN => PKU10_Len,
+		 i_PKU11_LEN => PKU11_Len,
+		 i_PKU12_LEN => PKU12_Len,
+		 i_PKU13_LEN => PKU13_Len,
+		 i_PKU14_LEN => PKU14_Len,
+		 i_PKU15_LEN => PKU15_Len,
+		 i_PKU16_LEN => PKU16_Len,
+		 i_PKU17_LEN => PKU17_Len,
+		 i_PKU18_LEN => PKU18_Len,
+		 i_PKU19_LEN => PKU19_Len,
+		 i_PKU1_LEN => PKU1_Len,
+		 i_PKU20_LEN => PKU20_Len,
+		 i_PKU21_LEN => PKU21_Len,
+		 i_PKU22_LEN => PKU22_Len,
+		 i_PKU23_LEN => PKU23_Len,
+		 i_PKU2_LEN => PKU2_Len,
+		 i_PKU3_LEN => PKU3_Len,
+		 i_PKU4_LEN => PKU4_Len,
+		 i_PKU5_LEN => PKU5_Len,
+		 i_PKU6_LEN => PKU6_Len,
+		 i_PKU7_LEN => PKU7_Len,
+		 i_PKU8_LEN => PKU8_Len,
+		 i_PKU9_LEN => PKU9_Len,
+		 i_PKU_LIST => PKU_LIST,
+		 o_RE => SYNTHESIZED_WIRE_10,
+		 o_Rst => RST,
+		 o_Data => SYNTHESIZED_WIRE_9);
+
+
+PROCESS(MHz_25)
+BEGIN
+IF (RISING_EDGE(MHz_25)) THEN
+	SYNTHESIZED_WIRE_15 <= SYNTHESIZED_WIRE_8;
+END IF;
+END PROCESS;
+
+
+b2v_inst67 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU2,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(2),
+		 o_PkLen => PKU2_Len);
+
+
+b2v_inst68 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU3,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(3),
+		 o_PkLen => PKU3_Len);
+
+
+b2v_inst69 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU4,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(4),
+		 o_PkLen => PKU4_Len);
+
+
+b2v_inst7 : uart_module
+PORT MAP(MHz_25 => GND,
+		 DATA_WR_READY => DATA_WR_READY,
+		 DATA_RE_READY => DATA_RE_READY,
+		 RO_OSN => RO9,
+		 RO_REZ => RO10,
+		 BASE_ADDR => U4_BASE_ADDR,
+		 DATA_FROM_MPU => DATA_FROM_MPU,
+		 DQMBn => DQMBn,
+		 MPU_ADDR => MPU_ADDR,
+		 DI_OSN => DI9,
+		 DI_REZ => DI10,
+		 NRE => GAP,
+		 DATA_TO_MPU => DATA_TO_MPU);
+
+
+b2v_inst70 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU5,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(5),
+		 o_PkLen => PKU5_Len);
+
+
+b2v_inst71 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU6,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(6),
+		 o_PkLen => PKU6_Len);
+
+
+b2v_inst72 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU7,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(7),
+		 o_PkLen => PKU7_Len);
+
+
+DQMBn(3) <= NOT(DQMBn3);
+
+
+
+b2v_inst74 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU8,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(8),
+		 o_PkLen => PKU8_Len);
+
+
+b2v_inst75 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU9,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(9),
+		 o_PkLen => PKU9_Len);
+
+
+b2v_inst76 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU10,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(10),
+		 o_PkLen => PKU10_Len);
+
+
+b2v_inst77 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU11,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(11),
+		 o_PkLen => PKU11_Len);
+
+
+b2v_inst78 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU12,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(12),
+		 o_PkLen => PKU12_Len);
+
+
+b2v_inst79 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU13,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(13),
+		 o_PkLen => PKU13_Len);
+
+
+b2v_inst8 : const_x1000
+PORT MAP(		 result => U2_BASE_ADDR);
+
+
+b2v_inst80 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU14,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(14),
+		 o_PkLen => PKU14_Len);
+
+
+b2v_inst81 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU15,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(15),
+		 o_PkLen => PKU15_Len);
+
+
+b2v_inst82 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU16,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(16),
+		 o_PkLen => PKU16_Len);
+
+
+b2v_inst83 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU17,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(17),
+		 o_PkLen => PKU17_Len);
+
+
+b2v_inst84 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU18,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(18),
+		 o_PkLen => PKU18_Len);
+
+
+b2v_inst85 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU19,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(19),
+		 o_PkLen => PKU19_Len);
+
+
+b2v_inst86 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU20,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(20),
+		 o_PkLen => PKU20_Len);
+
+
+b2v_inst87 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU21,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(21),
+		 o_PkLen => PKU21_Len);
+
+
+b2v_inst88 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU22,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(22),
+		 o_PkLen => PKU22_Len);
+
+
+b2v_inst89 : pku_in_block
+PORT MAP(i_Clk => MHz_25,
+		 i_kHz => kHz,
+		 i_PKU => PKU23,
+		 i_Rst => PKU_LIST_RST,
+		 o_En => PKU_LIST(23),
+		 o_PkLen => PKU23_Len);
+
+
+b2v_inst9 : const_x1800
+PORT MAP(		 result => U3_BASE_ADDR);
+
+
+b2v_inst90 : tri31_1
+PORT MAP(enabledt => PKU_LIST_ADDR_EN,
+		 data => SYNTHESIZED_WIRE_9,
+		 tridata => DATA_TO_MPU);
+
+
+PKU_LIST_ADDR_EN <= SYNTHESIZED_WIRE_10 AND DATA_RE_READY;
+
+
+PROCESS(MHz_25)
+BEGIN
+IF (RISING_EDGE(MHz_25)) THEN
+	DFF_inst92 <= SYNTHESIZED_WIRE_15;
+END IF;
+END PROCESS;
+
+
+PK_START <= SYNTHESIZED_WIRE_15 AND SYNTHESIZED_WIRE_11;
+
+
+nE2 <= NOT(SYNTHESIZED_WIRE_16);
+
+
+
+nE1 <= NOT(SYNTHESIZED_WIRE_16);
+
+
+
+SYNTHESIZED_WIRE_11 <= NOT(DFF_inst92);
+
+
+
+b2v_inst98 : const_x800
+PORT MAP(		 result => U1_BASE_ADDR);
+
+NCS <= CS3;
+NWE <= WE_An;
+NRE <= OE;
+PKU0 <= IO49;
+PKU10 <= IO39;
+PKU11 <= IO40;
+PKU12 <= IO37;
+PKU13 <= IO38;
+PKU14 <= IO35;
+PKU15 <= IO36;
+PKU16 <= IO33;
+PKU17 <= IO34;
+PKU18 <= IO31;
+PKU19 <= IO28;
+PKU1 <= IO50;
+PKU20 <= IO27;
+PKU21 <= IO30;
+PKU22 <= IO29;
+PKU23 <= IO32;
+PKU2 <= IO47;
+PKU3 <= IO48;
+PKU4 <= IO45;
+PKU5 <= IO46;
+PKU6 <= IO43;
+PKU7 <= IO44;
+PKU8 <= IO41;
+PKU9 <= IO42;
+INT0 <= GND;
+INT1 <= GND;
+INT2 <= GND;
+INT3 <= GND;
+INT4 <= GND;
+INT5 <= GND;
+MISO_1 <= GND;
+IRQ_1 <= GND;
+ResetP <= GND;
+GA0 <= GND;
+GA1 <= GND;
+GA2 <= GND;
+GA3 <= GND;
+GA4 <= GND;
+SM1P_OR_1WIRE_O <= GND;
+SM2P_OR_1WIRE_O <= GND;
+IO1 <= nE1;
+IO2 <= PKU0;
+IO3 <= PK_A0;
+IO4 <= PK_START;
+IO5 <= PK_A2;
+IO6 <= PK_A3;
+IO7 <= PKU_LIST(0);
+IO8 <= PKU_LIST_RST;
+IO26 <= PK_A5;
+IO25 <= PK_A4;
+IO55 <= PK_A0;
+IO56 <= PK_A1;
+IO57 <= PK_A2;
+IO58 <= PK_A3;
+IO51 <= nE1;
+IO52 <= nE2;
+IO60 <= PK_A6;
+IO59 <= PK_A7;
+
+GND <= '0';
+MPU_ADDR(0) <= A0;
+MPU_ADDR(1) <= A1;
+MPU_ADDR(2) <= A2;
+MPU_ADDR(3) <= A3;
+MPU_ADDR(4) <= A4;
+MPU_ADDR(5) <= A5;
+MPU_ADDR(6) <= A6;
+MPU_ADDR(7) <= A7;
+MPU_ADDR(8) <= A8;
+MPU_ADDR(9) <= A9;
+MPU_ADDR(10) <= A10;
+MPU_ADDR(11) <= A11;
+MPU_ADDR(12) <= A12;
+MPU_ADDR(13) <= A13;
+MPU_ADDR(14) <= A14;
+MPU_ADDR(15) <= '0';
+MPU_DATA(0) <= D0;
+MPU_DATA(1) <= D1;
+MPU_DATA(2) <= D2;
+MPU_DATA(3) <= D3;
+MPU_DATA(4) <= D4;
+MPU_DATA(5) <= D5;
+MPU_DATA(6) <= D6;
+MPU_DATA(7) <= D7;
+MPU_DATA(8) <= D8;
+MPU_DATA(9) <= D9;
+MPU_DATA(10) <= D10;
+MPU_DATA(11) <= D11;
+MPU_DATA(12) <= D12;
+MPU_DATA(13) <= D13;
+MPU_DATA(14) <= D14;
+MPU_DATA(15) <= D15;
+MPU_DATA(16) <= D16;
+MPU_DATA(17) <= D17;
+MPU_DATA(18) <= D18;
+MPU_DATA(19) <= D19;
+MPU_DATA(20) <= D20;
+MPU_DATA(21) <= D21;
+MPU_DATA(22) <= D22;
+MPU_DATA(23) <= D23;
+MPU_DATA(24) <= D24;
+MPU_DATA(25) <= D25;
+MPU_DATA(26) <= D26;
+MPU_DATA(27) <= D27;
+MPU_DATA(28) <= D28;
+MPU_DATA(29) <= D29;
+MPU_DATA(30) <= D30;
+MPU_DATA(31) <= D31;
+VCC <= '1';
+END bdf_type;
