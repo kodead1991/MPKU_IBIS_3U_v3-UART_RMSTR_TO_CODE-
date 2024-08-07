@@ -44,7 +44,6 @@ entity IMIT_UART_TX_BLOCK is
 						end if;
 					------------------------------------------------
 					when s_CntIncr =>
-						
 						o_DV <= '0';
 						r_Cnt <= r_Cnt + 1;
 						r_State <= s_Idle;
