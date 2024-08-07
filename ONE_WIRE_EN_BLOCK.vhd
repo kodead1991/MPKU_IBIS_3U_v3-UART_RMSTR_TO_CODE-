@@ -1,44 +1,25 @@
-LIBRARY IEEE;
-USE IEEE.STD_LOGIC_1164.ALL;
-USE IEEE.STD_LOGIC_arith.ALL;
-USE IEEE.STD_LOGIC_unsigned.ALL;
-USE IEEE.numeric_std.ALL;
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;   
+use IEEE.STD_LOGIC_arith.all;
+use IEEE.STD_LOGIC_unsigned.all;
+USE IEEE.numeric_std.all;	
 
-ENTITY ONE_WIRE_EN_BLOCK IS
+entity ONE_WIRE_EN_BLOCK is
+	
+    port (
+            i_Addr	        :in std_logic_vector(15 downto 0);		 
+            i_BaseAddr		:in std_logic_vector(15 downto 0);
 
-    PORT (
-        i_Addr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+            o_En	    	:out std_logic := '0'         
+        );
+    end ONE_WIRE_EN_BLOCK;
 
-        o_En1 : OUT STD_LOGIC := '0';
-        o_En2 : OUT STD_LOGIC := '0';
-        o_En3 : OUT STD_LOGIC := '0';
-        o_En4 : OUT STD_LOGIC := '0'
-    );
-END ONE_WIRE_EN_BLOCK;
 
-ARCHITECTURE arch OF ONE_WIRE_EN_BLOCK IS
 
-    CONSTANT LINE1 : STD_LOGIC_VECTOR(15 DOWNTO 0) := x"3940";
-    CONSTANT LINE2 : STD_LOGIC_VECTOR(15 DOWNTO 0) := x"3950";
-    CONSTANT LINE3 : STD_LOGIC_VECTOR(15 DOWNTO 0) := x"3960";
-    CONSTANT LINE4 : STD_LOGIC_VECTOR(15 DOWNTO 0) := x"3970";
+    architecture arch of ONE_WIRE_EN_BLOCK is
 
-BEGIN
+	begin
 
-    o_En1 <=
-        '1' WHEN (i_Addr(15 DOWNTO 4) = LINE1(15 DOWNTO 4)) ELSE
-        '0';
+		o_En <= '1' when (i_Addr(15 downto 4) = i_BaseAddr(15 downto 4)) else '0';
 
-    o_En2 <=
-        '1' WHEN (i_Addr(15 DOWNTO 4) = LINE2(15 DOWNTO 4)) ELSE
-        '0';
-
-    o_En3 <=
-        '1' WHEN (i_Addr(15 DOWNTO 4) = LINE3(15 DOWNTO 4)) ELSE
-        '0';
-
-    o_En4 <=
-        '1' WHEN (i_Addr(15 DOWNTO 4) = LINE4(15 DOWNTO 4)) ELSE
-        '0';
-
-END arch;
+    end arch;

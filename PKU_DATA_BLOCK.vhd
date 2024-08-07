@@ -67,7 +67,8 @@ BEGIN
 
     o_Data <= x"0000" & "0000" & r_Data;
 
-    o_RE <= '1' WHEN (i_Addr(15 DOWNTO 5) = i_BaseAddr(15 DOWNTO 5)) ELSE
+    o_RE <=
+        '1' WHEN (i_Addr(15 DOWNTO 5) = i_BaseAddr(15 DOWNTO 5)) ELSE
         '0';
 
 END arch;
