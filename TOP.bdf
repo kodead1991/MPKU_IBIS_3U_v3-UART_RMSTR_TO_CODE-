@@ -7973,27 +7973,6 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 624 8336 720 8384)
-	(text "CONST_x3910" (rect 5 1 106 17)(font "Arial" (font_size 10)))
-	(text "inst38" (rect 8 32 37 44)(font "Arial" ))
-	(port
-		(pt 96 24)
-		(output)
-		(text "result[15..0]" (rect 0 0 67 14)(font "Arial" (font_size 8)))
-		(text "result[15..0]" (rect 93 -31 160 -17)(font "Arial" (font_size 8))(invisible))
-		(line (pt 96 24)(pt 80 24)(line_width 3))
-	)
-	(drawing
-		(text "14608" (rect 55 18 84 30)(font "Arial" ))
-		(text "16" (rect 85 25 96 37)(font "Arial" ))
-		(line (pt 16 16)(pt 80 16)(line_width 1))
-		(line (pt 80 16)(pt 80 32)(line_width 1))
-		(line (pt 80 32)(pt 16 32)(line_width 1))
-		(line (pt 16 32)(pt 16 16)(line_width 1))
-		(line (pt 80 28)(pt 88 20)(line_width 1))
-	)
-)
-(symbol
 	(rect 1072 8328 1120 8360)
 	(text "NOT" (rect 1 0 21 10)(font "Arial" (font_size 6)))
 	(text "inst79" (rect 3 21 32 33)(font "Arial" ))
@@ -8354,7 +8333,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 2168 8016 2264 8064)
+	(rect 624 8336 720 8384)
 	(text "CONST_x3940" (rect 5 1 106 17)(font "Arial" (font_size 10)))
 	(text "inst45" (rect 8 32 37 44)(font "Arial" ))
 	(port
@@ -8401,6 +8380,27 @@ applicable agreement for further details.
 	)
 	(drawing
 		(rectangle (rect 16 16 152 80)(line_width 1))
+	)
+)
+(symbol
+	(rect 2168 8016 2264 8064)
+	(text "CONST_x3980" (rect 5 1 106 17)(font "Arial" (font_size 10)))
+	(text "inst46" (rect 8 32 37 44)(font "Arial" ))
+	(port
+		(pt 96 24)
+		(output)
+		(text "result[15..0]" (rect 0 0 67 14)(font "Arial" (font_size 8)))
+		(text "result[15..0]" (rect 93 -31 160 -17)(font "Arial" (font_size 8))(invisible))
+		(line (pt 96 24)(pt 80 24)(line_width 3))
+	)
+	(drawing
+		(text "14720" (rect 55 18 84 30)(font "Arial" ))
+		(text "16" (rect 85 25 96 37)(font "Arial" ))
+		(line (pt 16 16)(pt 80 16)(line_width 1))
+		(line (pt 80 16)(pt 80 32)(line_width 1))
+		(line (pt 80 32)(pt 16 32)(line_width 1))
+		(line (pt 16 32)(pt 16 16)(line_width 1))
+		(line (pt 80 28)(pt 88 20)(line_width 1))
 	)
 )
 (connector
