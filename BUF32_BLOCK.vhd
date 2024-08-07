@@ -28,6 +28,7 @@ entity BUF32_BLOCK is
 					o_Data <= i_Data;
 				end if;
 			end if;
+            
 
 		end process;
 
