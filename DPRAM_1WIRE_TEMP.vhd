@@ -42,6 +42,7 @@ USE altera_mf.all;
 ENTITY DPRAM_1WIRE_TEMP IS
 	PORT
 	(
+		byteena_a		: IN STD_LOGIC_VECTOR (3 DOWNTO 0) :=  (OTHERS => '1');
 		clock		: IN STD_LOGIC  := '1';
 		data		: IN STD_LOGIC_VECTOR (31 DOWNTO 0);
 		rdaddress		: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
@@ -62,6 +63,7 @@ ARCHITECTURE SYN OF dpram_1wire_temp IS
 	COMPONENT altsyncram
 	GENERIC (
 		address_reg_b		: STRING;
+		byte_size		: NATURAL;
 		clock_enable_input_a		: STRING;
 		clock_enable_input_b		: STRING;
 		clock_enable_output_a		: STRING;
@@ -85,6 +87,7 @@ ARCHITECTURE SYN OF dpram_1wire_temp IS
 	PORT (
 			wren_a	: IN STD_LOGIC ;
 			clock0	: IN STD_LOGIC ;
+			byteena_a	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 			address_a	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 			address_b	: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 			rden_b	: IN STD_LOGIC ;
@@ -99,6 +102,7 @@ BEGIN
 	altsyncram_component : altsyncram
 	GENERIC MAP (
 		address_reg_b => "CLOCK0",
+		byte_size => 8,
 		clock_enable_input_a => "BYPASS",
 		clock_enable_input_b => "BYPASS",
 		clock_enable_output_a => "BYPASS",
@@ -117,11 +121,12 @@ BEGIN
 		widthad_b => 4,
 		width_a => 32,
 		width_b => 32,
-		width_byteena_a => 1
+		width_byteena_a => 4
 	)
 	PORT MAP (
 		wren_a => wren,
 		clock0 => clock,
+		byteena_a => byteena_a,
 		address_a => wraddress,
 		address_b => rdaddress,
 		rden_b => rden,
@@ -140,7 +145,7 @@ END SYN;
 -- Retrieval info: PRIVATE: ADDRESSSTALL_B NUMERIC "0"
 -- Retrieval info: PRIVATE: BYTEENA_ACLR_A NUMERIC "0"
 -- Retrieval info: PRIVATE: BYTEENA_ACLR_B NUMERIC "0"
--- Retrieval info: PRIVATE: BYTE_ENABLE_A NUMERIC "0"
+-- Retrieval info: PRIVATE: BYTE_ENABLE_A NUMERIC "1"
 -- Retrieval info: PRIVATE: BYTE_ENABLE_B NUMERIC "0"
 -- Retrieval info: PRIVATE: BYTE_SIZE NUMERIC "8"
 -- Retrieval info: PRIVATE: BlankMemory NUMERIC "1"
@@ -186,7 +191,7 @@ END SYN;
 -- Retrieval info: PRIVATE: SYNTH_WRAPPER_GEN_POSTFIX STRING "0"
 -- Retrieval info: PRIVATE: USE_DIFF_CLKEN NUMERIC "0"
 -- Retrieval info: PRIVATE: UseDPRAM NUMERIC "1"
--- Retrieval info: PRIVATE: VarWidth NUMERIC "1"
+-- Retrieval info: PRIVATE: VarWidth NUMERIC "0"
 -- Retrieval info: PRIVATE: WIDTH_READ_A NUMERIC "32"
 -- Retrieval info: PRIVATE: WIDTH_READ_B NUMERIC "32"
 -- Retrieval info: PRIVATE: WIDTH_WRITE_A NUMERIC "32"
@@ -197,6 +202,7 @@ END SYN;
 -- Retrieval info: PRIVATE: enable NUMERIC "0"
 -- Retrieval info: PRIVATE: rden NUMERIC "1"
 -- Retrieval info: CONSTANT: ADDRESS_REG_B STRING "CLOCK0"
+-- Retrieval info: CONSTANT: BYTE_SIZE NUMERIC "8"
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_A STRING "BYPASS"
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_B STRING "BYPASS"
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_A STRING "BYPASS"
@@ -215,7 +221,8 @@ END SYN;
 -- Retrieval info: CONSTANT: WIDTHAD_B NUMERIC "4"
 -- Retrieval info: CONSTANT: WIDTH_A NUMERIC "32"
 -- Retrieval info: CONSTANT: WIDTH_B NUMERIC "32"
--- Retrieval info: CONSTANT: WIDTH_BYTEENA_A NUMERIC "1"
+-- Retrieval info: CONSTANT: WIDTH_BYTEENA_A NUMERIC "4"
+-- Retrieval info: USED_PORT: byteena_a 0 0 4 0 INPUT VCC byteena_a[3..0]
 -- Retrieval info: USED_PORT: clock 0 0 0 0 INPUT VCC clock
 -- Retrieval info: USED_PORT: data 0 0 32 0 INPUT NODEFVAL data[31..0]
 -- Retrieval info: USED_PORT: q 0 0 32 0 OUTPUT NODEFVAL q[31..0]
@@ -229,6 +236,7 @@ END SYN;
 -- Retrieval info: CONNECT: @address_a 0 0 4 0 wraddress 0 0 4 0
 -- Retrieval info: CONNECT: @address_b 0 0 4 0 rdaddress 0 0 4 0
 -- Retrieval info: CONNECT: @rden_b 0 0 0 0 rden 0 0 0 0
+-- Retrieval info: CONNECT: @byteena_a 0 0 4 0 byteena_a 0 0 4 0
 -- Retrieval info: CONNECT: @clock0 0 0 0 0 clock 0 0 0 0
 -- Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 -- Retrieval info: GEN_FILE: TYPE_NORMAL DPRAM_1WIRE_TEMP.vhd TRUE

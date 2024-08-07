@@ -4,29 +4,16 @@ USE IEEE.STD_LOGIC_arith.ALL;
 USE IEEE.STD_LOGIC_unsigned.ALL;
 USE IEEE.numeric_std.ALL;
 
-ENTITY ONE_WIRE_BLOCK_v3 IS
+ENTITY ONE_WIRE_BLOCK_v3_1 IS
 
     PORT (
-        i_ID_DATA : IN STD_LOGIC_VECTOR(63 DOWNTO 0) := x"FF01229266D86628";--(OTHERS => '0');
+        i_ID_DATA : IN STD_LOGIC_VECTOR(63 DOWNTO 0) := (OTHERS => '0');
 
-        o_ID_ADDR : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
+        o_ID_ADDR : OUT STD_LOGIC_VECTOR(3 DOWNTO 0) := (OTHERS => '0');
 
-        o_TEMP0 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := x"12345678";--(OTHERS => '0');
-        o_TEMP1 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-        o_TEMP2 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-        o_TEMP3 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-        o_TEMP4 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-        o_TEMP5 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-        o_TEMP6 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-        o_TEMP7 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-        o_TEMP8 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-        o_TEMP9 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-        o_TEMP10 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-        o_TEMP11 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-        o_TEMP12 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-        o_TEMP13 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-        o_TEMP14 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
-        o_TEMP15 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
+        o_TEMP_DATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
+        o_TEMP_ADDR : OUT STD_LOGIC_VECTOR(3 DOWNTO 0) := (OTHERS => '0');
+        o_TEMP_WR : OUT STD_LOGIC := '0';
 
         i_Clk : IN STD_LOGIC;
         i_1MHz : IN STD_LOGIC;
@@ -37,9 +24,9 @@ ENTITY ONE_WIRE_BLOCK_v3 IS
 
         o_Test : OUT STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0')
     );
-END ONE_WIRE_BLOCK_v3;
+END ONE_WIRE_BLOCK_v3_1;
 
-ARCHITECTURE arch OF ONE_WIRE_BLOCK_v3 IS
+ARCHITECTURE arch OF ONE_WIRE_BLOCK_v3_1 IS
 
     --CONSTANTS
     CONSTANT c_CntMhz_Div : INTEGER := 25;--clock divider coefficient
@@ -87,7 +74,7 @@ ARCHITECTURE arch OF ONE_WIRE_BLOCK_v3 IS
 
     --BIT/BYTE COUNTERS		
     SIGNAL r_Cnt_Bit_Tx : INTEGER RANGE 0 TO 8 := 0; --tx bit count
-    SIGNAL r_Cnt_Bit_Rx : INTEGER RANGE 0 TO 16 := 0; --rx bit count
+    SIGNAL r_Cnt_Bit_Rx : INTEGER RANGE 0 TO 17 := 0; --rx bit count
     SIGNAL r_Cnt_Byte_Rom : INTEGER RANGE 0 TO 8 := 0; --tx byte rom code count
 
     --SENS DATA
@@ -304,8 +291,16 @@ BEGIN
                             o_1WIRE <= '0';
                             r_State_1WIRE <= READ_BIT;
                             ------------------------------------------------------------									
+                        WHEN 16 => --STORE DATA TO BRAM
+                            o_TEMP_ADDR <= r_CntSensor;
+                            o_TEMP_DATA <= x"0000" & r_SensData(15 DOWNTO 0);
+                            o_TEMP_WR <= '1';
+                            r_Cnt_Bit_Rx <= 17;
+                            ------------------------------------------------------------									
                         WHEN OTHERS => --all data rx			
                             r_Cnt_Bit_Rx <= 0;
+
+                            o_TEMP_WR <= '0';
 
                             IF ((conv_integer(r_CntSensor)) = c_SensorNum - 1) THEN --ALL SENS HAVE BEEN CHECKED 
                                 r_State <= 0; --RESET SEND-STATE-MACHINE
@@ -342,29 +337,6 @@ BEGIN
                             END IF;
                     END CASE;
                 END IF;
-            END IF;
-        END IF;
-    END PROCESS;
-
-    PROCESS (i_Clk)
-    BEGIN
-
-        IF rising_edge(i_Clk) THEN
-            IF (i_1MHz = '1') THEN
-
-                IF (r_Cnt_Bit_Rx = 16) THEN
-                    CASE conv_integer(r_CntSensor) IS --SAVE SENS DATA TO OUTPUT BUSES
-                        WHEN 0 => o_TEMP0 <= x"0000" & r_SensData(15 DOWNTO 0);
-                        WHEN 1 => o_TEMP1 <= x"0000" & r_SensData(15 DOWNTO 0);
-                        WHEN 2 => o_TEMP2 <= x"0000" & r_SensData(15 DOWNTO 0);
-                        WHEN 3 => o_TEMP3 <= x"0000" & r_SensData(15 DOWNTO 0);
-                        WHEN 4 => o_TEMP4 <= x"0000" & r_SensData(15 DOWNTO 0);
-                        WHEN 5 => o_TEMP5 <= x"0000" & r_SensData(15 DOWNTO 0);
-                        WHEN 6 => o_TEMP6 <= x"0000" & r_SensData(15 DOWNTO 0);
-                        WHEN OTHERS => o_TEMP7 <= x"0000" & r_SensData(15 DOWNTO 0);
-                    END CASE;
-                END IF;
-
             END IF;
         END IF;
     END PROCESS;
