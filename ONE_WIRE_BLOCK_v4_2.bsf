@@ -1,0 +1,190 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+(header "symbol" (version "1.1"))
+(symbol
+	(rect 16 16 328 272)
+	(text "ONE_WIRE_BLOCK_v4_2" (rect 5 0 137 12)(font "Arial" ))
+	(text "inst" (rect 8 240 25 252)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "i_LINE1_ID_DATA[7..0]" (rect 0 0 116 12)(font "Arial" ))
+		(text "i_LINE1_ID_DATA[7..0]" (rect 21 27 137 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "i_LINE2_ID_DATA[7..0]" (rect 0 0 116 12)(font "Arial" ))
+		(text "i_LINE2_ID_DATA[7..0]" (rect 21 43 137 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 3))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "i_LINE3_ID_DATA[7..0]" (rect 0 0 116 12)(font "Arial" ))
+		(text "i_LINE3_ID_DATA[7..0]" (rect 21 59 137 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "i_LINE4_ID_DATA[7..0]" (rect 0 0 116 12)(font "Arial" ))
+		(text "i_LINE4_ID_DATA[7..0]" (rect 21 75 137 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "i_Clk" (rect 0 0 24 12)(font "Arial" ))
+		(text "i_Clk" (rect 21 91 45 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 1))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "i_1MHz" (rect 0 0 35 12)(font "Arial" ))
+		(text "i_1MHz" (rect 21 107 56 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112)(line_width 1))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "i_1kHz" (rect 0 0 33 12)(font "Arial" ))
+		(text "i_1kHz" (rect 21 123 54 135)(font "Arial" ))
+		(line (pt 0 128)(pt 16 128)(line_width 1))
+	)
+	(port
+		(pt 0 144)
+		(input)
+		(text "i_LINE1_1WIRE" (rect 0 0 80 12)(font "Arial" ))
+		(text "i_LINE1_1WIRE" (rect 21 139 101 151)(font "Arial" ))
+		(line (pt 0 144)(pt 16 144)(line_width 1))
+	)
+	(port
+		(pt 0 160)
+		(input)
+		(text "i_LINE2_1WIRE" (rect 0 0 80 12)(font "Arial" ))
+		(text "i_LINE2_1WIRE" (rect 21 155 101 167)(font "Arial" ))
+		(line (pt 0 160)(pt 16 160)(line_width 1))
+	)
+	(port
+		(pt 0 176)
+		(input)
+		(text "i_LINE3_1WIRE" (rect 0 0 80 12)(font "Arial" ))
+		(text "i_LINE3_1WIRE" (rect 21 171 101 183)(font "Arial" ))
+		(line (pt 0 176)(pt 16 176)(line_width 1))
+	)
+	(port
+		(pt 0 192)
+		(input)
+		(text "i_LINE4_1WIRE" (rect 0 0 80 12)(font "Arial" ))
+		(text "i_LINE4_1WIRE" (rect 21 187 101 199)(font "Arial" ))
+		(line (pt 0 192)(pt 16 192)(line_width 1))
+	)
+	(port
+		(pt 312 32)
+		(output)
+		(text "o_ID_ADDR[6..0]" (rect 0 0 87 12)(font "Arial" ))
+		(text "o_ID_ADDR[6..0]" (rect 204 27 291 39)(font "Arial" ))
+		(line (pt 312 32)(pt 296 32)(line_width 3))
+	)
+	(port
+		(pt 312 48)
+		(output)
+		(text "o_LINE1_TEMP_DATA[31..0]" (rect 0 0 142 12)(font "Arial" ))
+		(text "o_LINE1_TEMP_DATA[31..0]" (rect 149 43 291 55)(font "Arial" ))
+		(line (pt 312 48)(pt 296 48)(line_width 3))
+	)
+	(port
+		(pt 312 64)
+		(output)
+		(text "o_LINE2_TEMP_DATA[31..0]" (rect 0 0 142 12)(font "Arial" ))
+		(text "o_LINE2_TEMP_DATA[31..0]" (rect 149 59 291 71)(font "Arial" ))
+		(line (pt 312 64)(pt 296 64)(line_width 3))
+	)
+	(port
+		(pt 312 80)
+		(output)
+		(text "o_LINE3_TEMP_DATA[31..0]" (rect 0 0 142 12)(font "Arial" ))
+		(text "o_LINE3_TEMP_DATA[31..0]" (rect 149 75 291 87)(font "Arial" ))
+		(line (pt 312 80)(pt 296 80)(line_width 3))
+	)
+	(port
+		(pt 312 96)
+		(output)
+		(text "o_LINE4_TEMP_DATA[31..0]" (rect 0 0 142 12)(font "Arial" ))
+		(text "o_LINE4_TEMP_DATA[31..0]" (rect 149 91 291 103)(font "Arial" ))
+		(line (pt 312 96)(pt 296 96)(line_width 3))
+	)
+	(port
+		(pt 312 112)
+		(output)
+		(text "o_TEMP_ADDR[3..0]" (rect 0 0 103 12)(font "Arial" ))
+		(text "o_TEMP_ADDR[3..0]" (rect 188 107 291 119)(font "Arial" ))
+		(line (pt 312 112)(pt 296 112)(line_width 3))
+	)
+	(port
+		(pt 312 128)
+		(output)
+		(text "o_TEMP_WR" (rect 0 0 64 12)(font "Arial" ))
+		(text "o_TEMP_WR" (rect 227 123 291 135)(font "Arial" ))
+		(line (pt 312 128)(pt 296 128)(line_width 1))
+	)
+	(port
+		(pt 312 144)
+		(output)
+		(text "o_LINE1_1WIRE" (rect 0 0 83 12)(font "Arial" ))
+		(text "o_LINE1_1WIRE" (rect 208 139 291 151)(font "Arial" ))
+		(line (pt 312 144)(pt 296 144)(line_width 1))
+	)
+	(port
+		(pt 312 160)
+		(output)
+		(text "o_LINE2_1WIRE" (rect 0 0 83 12)(font "Arial" ))
+		(text "o_LINE2_1WIRE" (rect 208 155 291 167)(font "Arial" ))
+		(line (pt 312 160)(pt 296 160)(line_width 1))
+	)
+	(port
+		(pt 312 176)
+		(output)
+		(text "o_LINE3_1WIRE" (rect 0 0 83 12)(font "Arial" ))
+		(text "o_LINE3_1WIRE" (rect 208 171 291 183)(font "Arial" ))
+		(line (pt 312 176)(pt 296 176)(line_width 1))
+	)
+	(port
+		(pt 312 192)
+		(output)
+		(text "o_LINE4_1WIRE" (rect 0 0 83 12)(font "Arial" ))
+		(text "o_LINE4_1WIRE" (rect 208 187 291 199)(font "Arial" ))
+		(line (pt 312 192)(pt 296 192)(line_width 1))
+	)
+	(port
+		(pt 312 208)
+		(output)
+		(text "o_Test[7..0]" (rect 0 0 59 12)(font "Arial" ))
+		(text "o_Test[7..0]" (rect 232 203 291 215)(font "Arial" ))
+		(line (pt 312 208)(pt 296 208)(line_width 3))
+	)
+	(drawing
+		(rectangle (rect 16 16 296 240)(line_width 1))
+	)
+)
