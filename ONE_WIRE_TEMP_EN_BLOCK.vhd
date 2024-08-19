@@ -1,0 +1,25 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_arith.ALL;
+USE IEEE.STD_LOGIC_unsigned.ALL;
+USE IEEE.numeric_std.ALL;
+
+ENTITY ONE_WIRE_TEMP_EN_BLOCK IS
+
+    PORT (
+        i_Addr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+        i_BaseAddr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+
+        o_En : OUT STD_LOGIC := '0'
+    );
+END ONE_WIRE_TEMP_EN_BLOCK;
+
+ARCHITECTURE arch OF ONE_WIRE_TEMP_EN_BLOCK IS
+
+BEGIN
+
+    o_En <= 
+		'1' WHEN (i_Addr = i_BaseAddr) ELSE
+        '0';
+
+END arch;

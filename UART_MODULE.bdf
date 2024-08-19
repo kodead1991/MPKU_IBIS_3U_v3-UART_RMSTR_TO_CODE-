@@ -574,7 +574,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 3320 392 3400 432)
+	(rect 3320 440 3400 480)
 	(text "TRI31_1" (rect 17 1 72 17)(font "Arial" (font_size 10)))
 	(text "inst28" (rect 8 24 37 36)(font "Arial" ))
 	(port
@@ -1618,7 +1618,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 3664 128 3744 168)
+	(rect 3696 112 3776 152)
 	(text "TRI31_1" (rect 17 1 72 17)(font "Arial" (font_size 10)))
 	(text "inst34" (rect 8 24 37 36)(font "Arial" ))
 	(port
@@ -1781,7 +1781,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 3768 656 3848 696)
+	(rect 3704 632 3784 672)
 	(text "TRI31_1" (rect 17 1 72 17)(font "Arial" (font_size 10)))
 	(text "inst36" (rect 8 24 37 36)(font "Arial" ))
 	(port
@@ -1816,7 +1816,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 3440 688 3608 784)
+	(rect 3344 680 3512 776)
 	(text "UART_CTRL_EN_BLOCK" (rect 5 0 132 12)(font "Arial" ))
 	(text "inst35" (rect 8 80 37 92)(font "Arial" ))
 	(port
@@ -2156,6 +2156,70 @@ applicable agreement for further details.
 		(rectangle (rect 16 16 224 112)(line_width 1))
 	)
 )
+(symbol
+	(rect 3656 160 3720 208)
+	(text "AND2" (rect 1 0 25 10)(font "Arial" (font_size 6)))
+	(text "inst63" (rect 3 37 32 49)(font "Arial" ))
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 14 16)(line_width 1))
+	)
+	(port
+		(pt 0 32)
+		(input)
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(line (pt 0 32)(pt 14 32)(line_width 1))
+	)
+	(port
+		(pt 64 24)
+		(output)
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(line (pt 42 24)(pt 64 24)(line_width 1))
+	)
+	(drawing
+		(line (pt 14 12)(pt 30 12)(line_width 1))
+		(line (pt 14 37)(pt 31 37)(line_width 1))
+		(line (pt 14 12)(pt 14 37)(line_width 1))
+		(arc (pt 31 37)(pt 30 12)(rect 18 12 43 37)(line_width 1))
+	)
+)
+(symbol
+	(rect 3664 680 3728 728)
+	(text "AND2" (rect 1 0 25 10)(font "Arial" (font_size 6)))
+	(text "inst66" (rect 3 37 32 49)(font "Arial" ))
+	(port
+		(pt 0 16)
+		(input)
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(line (pt 0 16)(pt 14 16)(line_width 1))
+	)
+	(port
+		(pt 0 32)
+		(input)
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(line (pt 0 32)(pt 14 32)(line_width 1))
+	)
+	(port
+		(pt 64 24)
+		(output)
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 48 15 65 27)(font "Courier New" (bold))(invisible))
+		(line (pt 42 24)(pt 64 24)(line_width 1))
+	)
+	(drawing
+		(line (pt 14 12)(pt 30 12)(line_width 1))
+		(line (pt 14 37)(pt 31 37)(line_width 1))
+		(line (pt 14 12)(pt 14 37)(line_width 1))
+		(arc (pt 31 37)(pt 30 12)(rect 18 12 43 37)(line_width 1))
+	)
+)
 (connector
 	(text "DATA_FROM_MPU[31..0]" (rect 994 144 1121 156)(font "Arial" ))
 	(pt 984 160)
@@ -2288,9 +2352,9 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "DATA_TO_MPU[31..0]" (rect 3410 400 3519 412)(font "Arial" ))
-	(pt 3400 416)
-	(pt 3520 416)
+	(text "DATA_TO_MPU[31..0]" (rect 3410 448 3519 460)(font "Arial" ))
+	(pt 3400 464)
+	(pt 3520 464)
 	(bus)
 )
 (connector
@@ -2471,9 +2535,9 @@ applicable agreement for further details.
 	(pt 1104 192)
 )
 (connector
-	(text "TX_TAIL[31..0]" (rect 3226 400 3297 412)(font "Arial" ))
-	(pt 3200 416)
-	(pt 3320 416)
+	(text "TX_TAIL[31..0]" (rect 3226 448 3297 460)(font "Arial" ))
+	(pt 3200 464)
+	(pt 3320 464)
 	(bus)
 )
 (connector
@@ -2890,18 +2954,10 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 3704 192)
-	(pt 3704 168)
-)
-(connector
-	(text "DATA_TO_MPU[31..0]" (rect 3754 136 3863 148)(font "Arial" ))
-	(pt 3744 152)
-	(pt 3864 152)
+	(text "DATA_TO_MPU[31..0]" (rect 3786 120 3895 132)(font "Arial" ))
+	(pt 3776 136)
+	(pt 3896 136)
 	(bus)
-)
-(connector
-	(pt 3504 192)
-	(pt 3704 192)
 )
 (connector
 	(text "TXHEAD[31..0]" (rect 3020 144 3094 156)(font "Arial" ))
@@ -2910,9 +2966,9 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "TXHEAD[31..0]" (rect 3570 136 3644 148)(font "Arial" ))
-	(pt 3544 152)
-	(pt 3664 152)
+	(text "TXHEAD[31..0]" (rect 3602 120 3676 132)(font "Arial" ))
+	(pt 3576 136)
+	(pt 3696 136)
 	(bus)
 )
 (connector
@@ -2942,45 +2998,33 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "MPU_ADDR[15..0]" (rect 3336 704 3429 716)(font "Arial" ))
-	(pt 3360 720)
-	(pt 3440 720)
+	(text "MPU_ADDR[15..0]" (rect 3240 696 3333 708)(font "Arial" ))
+	(pt 3264 712)
+	(pt 3344 712)
 	(bus)
 )
 (connector
-	(text "BASE_ADDR[15..0]" (rect 3341 720 3438 732)(font "Arial" ))
-	(pt 3336 736)
-	(pt 3440 736)
+	(text "BASE_ADDR[15..0]" (rect 3245 712 3342 724)(font "Arial" ))
+	(pt 3240 728)
+	(pt 3344 728)
 	(bus)
 )
 (connector
-	(pt 3808 720)
-	(pt 3808 696)
-)
-(connector
-	(text "DATA_TO_MPU[31..0]" (rect 3858 664 3967 676)(font "Arial" ))
-	(pt 3848 680)
-	(pt 3968 680)
+	(text "DATA_TO_MPU[31..0]" (rect 3794 640 3903 652)(font "Arial" ))
+	(pt 3784 656)
+	(pt 3904 656)
 	(bus)
 )
 (connector
-	(pt 3608 720)
-	(pt 3808 720)
-)
-(connector
-	(text "CTRL[31..0]" (rect 3674 664 3734 676)(font "Arial" ))
-	(pt 3648 680)
-	(pt 3768 680)
+	(text "CTRL[31..0]" (rect 3610 640 3670 652)(font "Arial" ))
+	(pt 3584 656)
+	(pt 3704 656)
 	(bus)
 )
 (connector
 	(text "DATA_RE_READY" (rect 3143 480 3237 492)(font "Arial" ))
 	(pt 3136 496)
 	(pt 3240 496)
-)
-(connector
-	(pt 3360 504)
-	(pt 3360 432)
 )
 (connector
 	(text "RAM_RE" (rect 1936 152 1980 164)(font "Arial" ))
@@ -3119,6 +3163,46 @@ applicable agreement for further details.
 (connector
 	(pt 680 824)
 	(pt 680 904)
+)
+(connector
+	(text "DATA_RE_READY" (rect 3559 160 3653 172)(font "Arial" ))
+	(pt 3552 176)
+	(pt 3656 176)
+)
+(connector
+	(pt 3736 152)
+	(pt 3736 184)
+)
+(connector
+	(pt 3736 184)
+	(pt 3720 184)
+)
+(connector
+	(text "TXHEAD_ADDR_EN" (rect 3560 176 3661 188)(font "Arial" ))
+	(pt 3504 192)
+	(pt 3656 192)
+)
+(connector
+	(text "DATA_RE_READY" (rect 3567 680 3661 692)(font "Arial" ))
+	(pt 3560 696)
+	(pt 3664 696)
+)
+(connector
+	(pt 3744 672)
+	(pt 3744 704)
+)
+(connector
+	(pt 3744 704)
+	(pt 3728 704)
+)
+(connector
+	(text "CTRL_ADDR_EN" (rect 3557 696 3644 708)(font "Arial" ))
+	(pt 3512 712)
+	(pt 3664 712)
+)
+(connector
+	(pt 3360 480)
+	(pt 3360 504)
 )
 (junction (pt 1088 296))
 (junction (pt 2040 848))
