@@ -68,7 +68,6 @@ ARCHITECTURE SYN OF dpram_1wire_temp IS
 		clock_enable_input_b		: STRING;
 		clock_enable_output_a		: STRING;
 		clock_enable_output_b		: STRING;
-		init_file		: STRING;
 		intended_device_family		: STRING;
 		lpm_type		: STRING;
 		numwords_a		: NATURAL;
@@ -108,7 +107,6 @@ BEGIN
 		clock_enable_input_b => "BYPASS",
 		clock_enable_output_a => "BYPASS",
 		clock_enable_output_b => "BYPASS",
-		init_file => "../Memory_Init_File.mif",
 		intended_device_family => "Cyclone II",
 		lpm_type => "altsyncram",
 		numwords_a => 16,
@@ -150,7 +148,7 @@ END SYN;
 -- Retrieval info: PRIVATE: BYTE_ENABLE_A NUMERIC "1"
 -- Retrieval info: PRIVATE: BYTE_ENABLE_B NUMERIC "0"
 -- Retrieval info: PRIVATE: BYTE_SIZE NUMERIC "8"
--- Retrieval info: PRIVATE: BlankMemory NUMERIC "0"
+-- Retrieval info: PRIVATE: BlankMemory NUMERIC "1"
 -- Retrieval info: PRIVATE: CLOCK_ENABLE_INPUT_A NUMERIC "0"
 -- Retrieval info: PRIVATE: CLOCK_ENABLE_INPUT_B NUMERIC "0"
 -- Retrieval info: PRIVATE: CLOCK_ENABLE_OUTPUT_A NUMERIC "0"
@@ -209,7 +207,6 @@ END SYN;
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_B STRING "BYPASS"
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_A STRING "BYPASS"
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_B STRING "BYPASS"
--- Retrieval info: CONSTANT: INIT_FILE STRING "../Memory_Init_File.mif"
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone II"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "altsyncram"
 -- Retrieval info: CONSTANT: NUMWORDS_A NUMERIC "16"
