@@ -5,20 +5,20 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity UART_TXDATA_BLOCK is
 	Port (
-		i_Clk           : in  STD_LOGIC;
-		i_TxStart       : in  STD_LOGIC;
-		i_TxHead        : in  STD_LOGIC_VECTOR(10 downto 0);
-		i_RamData       : in  STD_LOGIC_VECTOR(31 downto 0);
-		i_DriverReady   : in  STD_LOGIC;
-		i_TxTail_WE     : in  STD_LOGIC;
-		i_TxTail_Data   : in  STD_LOGIC_VECTOR(31 downto 0);
-		i_Reset         : in  STD_LOGIC;
-		o_RamRE         : out STD_LOGIC;
-		o_RamAddr       : out STD_LOGIC_VECTOR(8 downto 0);
-		o_DV            : out STD_LOGIC;
-		o_TxData        : out STD_LOGIC_VECTOR(7 downto 0);
-		o_TxEn          : out STD_LOGIC;
-		o_TxTail        : out STD_LOGIC_VECTOR(31 downto 0)
+		i_Clk           : in  STD_LOGIC; -- тактовый сигнал
+		i_TxStart       : in  STD_LOGIC; -- сигнала начала выдачи по UART TX
+		i_TxHead        : in  STD_LOGIC_VECTOR(10 downto 0); -- значение указателя верхней границы данных TX в блоке памяти
+		i_RamData       : in  STD_LOGIC_VECTOR(31 downto 0); -- данные TX, прочитанные из блока памяти
+		i_DriverReady   : in  STD_LOGIC; -- флаг готовности драйвера UART TX к выдаче
+		i_TxTail_WE     : in  STD_LOGIC; -- сигнал записи значения указателя нижней границы данных TX в блоке памяти
+		i_TxTail_Data   : in  STD_LOGIC_VECTOR(31 downto 0); -- значение указателя нижней границы данных TX в блоке памяти (запись MPU)
+		i_Reset         : in  STD_LOGIC; -- сигнал общего сброса
+		o_RamRE         : out STD_LOGIC; -- сигнал чтения из блока памяти
+		o_RamAddr       : out STD_LOGIC_VECTOR(8 downto 0); -- шина адреса чтения блока памяти
+		o_DV            : out STD_LOGIC; -- сигнал готовности данных TX к выдаче
+		o_TxData        : out STD_LOGIC_VECTOR(7 downto 0); -- данные TX
+		o_TxEn          : out STD_LOGIC; -- сигнал разрешения выдачи для микросхемы RS-485
+		o_TxTail_Data   : out STD_LOGIC_VECTOR(31 downto 0) -- значение указателя нижней границы данных TX в блоке памяти (чтение MPU)
 	);
 end UART_TXDATA_BLOCK;
 
@@ -42,7 +42,7 @@ architecture Behavioral of UART_TXDATA_BLOCK is
 	SIGNAL r_State : state := s_Idle;
 
 	--REGS
-	SIGNAL r_TxTail : STD_LOGIC_VECTOR(10 DOWNTO 0) := (OTHERS => '0');
+	SIGNAL r_TxTail_Data : STD_LOGIC_VECTOR(10 DOWNTO 0) := (OTHERS => '0');
 	SIGNAL r_RamData : STD_LOGIC_VECTOR(31 DOWNTO 0) := (OTHERS => '0');
 	
 	signal r_TxEn: STD_LOGIC := '0';
@@ -61,10 +61,10 @@ PROCESS (i_Clk)
                 -- Сброс конечного автомата и регистров
                 r_State <= s_Idle;
                 
-                -- Обработка записи TX Tail от MPU при сбросе
+                -- Обработка записи TX Tail от MPU во время сброса
                 IF (i_TxTail_WE = '1') THEN
-                    -- r_TxTail <= r_TxTail_Data(10 downto 0);
-                    r_TxTail <= (others=>'0');
+                    -- r_TxTail_Data <= r_TxTail_Data_Data(10 downto 0);
+                    r_TxTail_Data <= (others=>'0');
                 END IF;
                 
                 r_TxEn <= '0';
@@ -82,7 +82,7 @@ PROCESS (i_Clk)
                     ------------------------------------------------
                     WHEN s_CheckPtr =>
                         -- Проверка совпадения указателей TX Tail и TX Head
-                        IF (r_TxTail = i_TxHead) THEN
+                        IF (r_TxTail_Data = i_TxHead) THEN
                             r_State <= s_Idle;
                             r_TxEn <= '0';
                         ELSE
@@ -100,7 +100,7 @@ PROCESS (i_Clk)
                     ------------------------------------------------
                     WHEN s_SetRE =>
                         -- Установка адреса и запроса чтения из RAM
-                        o_RamAddr <= r_TxTail(10 DOWNTO 2);
+                        o_RamAddr <= r_TxTail_Data(10 DOWNTO 2);
                         o_RamRE <= '1';
                         r_State <= s_WaitData1;
                     ------------------------------------------------
@@ -116,7 +116,7 @@ PROCESS (i_Clk)
                     ------------------------------------------------
                     WHEN s_SetDV =>
                         -- Формирование байта для передачи по UART
-                        CASE (r_TxTail(1 DOWNTO 0)) IS
+                        CASE (r_TxTail_Data(1 DOWNTO 0)) IS
                             WHEN "00" => o_TxData <= r_RamData(7 DOWNTO 0);
                             WHEN "01" => o_TxData <= r_RamData(15 DOWNTO 8);
                             WHEN "10" => o_TxData <= r_RamData(23 DOWNTO 16);
@@ -137,7 +137,7 @@ PROCESS (i_Clk)
                     WHEN s_Wait =>
                         -- Ожидание готовности драйвера, инкремент указателя TX Tail
                         IF (i_DriverReady = '1') THEN
-                            r_TxTail <= r_TxTail + 1;
+                            r_TxTail_Data <= r_TxTail_Data + 1;
                             r_State <= s_CheckPtr;
                         END IF;
                     ------------------------------------------------
@@ -150,7 +150,7 @@ PROCESS (i_Clk)
 
     END PROCESS;
 
-	o_TxTail <= (31 downto 11 => '0') & r_TxTail;
+	o_TxTail_Data <= (31 downto 11 => '0') & r_TxTail_Data;
 	
 	o_TxEn <= r_TxEn;
 
