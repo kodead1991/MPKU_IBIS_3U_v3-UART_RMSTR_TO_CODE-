@@ -8,7 +8,9 @@ ENTITY UART_RX_BLOCK IS
 
 	PORT (
 		i_Clk : IN STD_LOGIC;
-		i_Rx : IN STD_LOGIC;
+		i_Rx : IN STD_LOGIC;	   
+		
+		i_Reset : IN STD_LOGIC;
 
 		o_RxDV : OUT STD_LOGIC := '0';
 		o_RxData : OUT STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');
@@ -21,29 +23,26 @@ END UART_RX_BLOCK;
 ARCHITECTURE arch OF UART_RX_BLOCK IS
 
 	--CONSTANTS
-	CONSTANT c_CntPerBit : INTEGER := 26;
-	CONSTANT c_DataStorePiont : INTEGER := 13;
+	CONSTANT c_TickPerBit : INTEGER := 27;
+	CONSTANT c_BitPerWord : INTEGER := 11;
+	CONSTANT c_DataStorePoint : INTEGER := c_TickPerBit/2;
 
 	--STATE MACHINES
 	TYPE t_state IS (
 		s_Idle,
-		s_StartBit,
-		s_RxIn
+		s_Receive
 	);
 	SIGNAL r_State : t_state := s_Idle;
 
 	--INPUT BUFFER
-	SIGNAL r_RX : STD_LOGIC := '1';
-
-	--ACCUMULATOR OF '1' IN i_RX
-	SIGNAL r_Acc : INTEGER RANGE 0 TO c_CntPerBit := 0;
+	SIGNAL r_Rx : STD_LOGIC := '1';
 
 	--STORAGE OF RECIEVED BIT
 	SIGNAL r_RxBitBuffer : STD_LOGIC := '1';
 
 	--COUNTERS
-	SIGNAL r_CntClk : INTEGER RANGE 0 TO 26 := 0;
-	SIGNAL r_CntBit : INTEGER RANGE 0 TO 10 := 0;
+	SIGNAL r_CntClk : INTEGER RANGE 0 TO c_TickPerBit := 0;
+	SIGNAL r_CntBit : INTEGER RANGE 0 TO c_BitPerWord := 0;
 
 	--RECIEVED DATA BUS
 	SIGNAL r_RxData : STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');
@@ -57,12 +56,13 @@ ARCHITECTURE arch OF UART_RX_BLOCK IS
 
 BEGIN
 
+	-- == CLK and BIT counters ==
 	PROCESS (i_Clk)
 	BEGIN
 
 		IF rising_edge(i_Clk) THEN
-			IF (r_State = s_RxIn) THEN
-				IF (r_CntClk = 26) THEN
+			IF (r_State = s_Receive) THEN
+				IF (r_CntClk = c_TickPerBit - 1) THEN
 					r_CntClk <= 0;
 					r_CntBit <= r_CntBit + 1;
 				ELSE
@@ -76,60 +76,57 @@ BEGIN
 		END IF;
 
 	END PROCESS;
-
-	PROCESS (i_Clk)
+	
+	
+	-- == FSM ==
+	PROCESS (i_Reset,i_Clk)
 	BEGIN
 
-		IF falling_edge(i_Clk) THEN
+		IF (i_Reset = '1') THEN	  --FMS RESET
+			r_State <= s_Idle;
+		ELSIF falling_edge(i_Clk) THEN
 
 			r_Rx <= i_Rx;
 
+			--RX Line restore
 			IF (r_Rx = '1') THEN
 				r_FlagBreakLine <= '0';
 			END IF;
 
-			r_RxDataValid <= '0';
+			r_RxDataValid <= '0';	
 
-			--**************************UART WORD RECIEVER****************************************************
+			-- === UART WORD RECIEVER ===
+			--FSM TO TAKE A DESICION
 			CASE (r_State) IS
 					------------------------------------------------------------		 
 				WHEN s_Idle =>
-
+				
+					--GOT START BIT AND LINE ISN'T BROKEN
 					IF (r_Rx = '0' AND r_FlagBreakLine = '0') THEN
-						--r_State <= s_StartBit;
-						r_State <= s_RxIn;
+						r_State <= s_Receive;
 					END IF;
 					------------------------------------------------------------ 	   
-				WHEN s_RxIn =>
+				WHEN s_Receive =>
 
-					IF (r_CntClk < c_CntPerBit - 1) THEN --counting until border
-						IF (r_Rx = '1') THEN --accumulating '1'
-							r_Acc <= r_Acc + 1;
-						END IF;
-					ELSIF (r_CntClk = c_CntPerBit - 1) THEN --MAKE A DECISION
-						IF (r_Acc >= c_DataStorePiont) THEN
-							r_RxBitBuffer <= '1';
-						ELSE
-							r_RxBitBuffer <= '0';
-						END IF;
-					ELSE --STORE A DECISION's RESULT
-						r_Acc <= 0;
-
+					--RX ACCUMULATOR
+					IF (r_CntClk = c_DataStorePoint) THEN --middle of the bit
+						
+						--FSM RECEIVER
 						CASE (r_CntBit) IS
 							WHEN 0 =>
-								IF (r_RxBitBuffer = '1') THEN
+								IF (r_Rx = '1') THEN
 									r_State <= s_Idle;
 								END IF;
-							WHEN 1 => r_RxData(0) <= r_RxBitBuffer;
-							WHEN 2 => r_RxData(1) <= r_RxBitBuffer;
-							WHEN 3 => r_RxData(2) <= r_RxBitBuffer;
-							WHEN 4 => r_RxData(3) <= r_RxBitBuffer;
-							WHEN 5 => r_RxData(4) <= r_RxBitBuffer;
-							WHEN 6 => r_RxData(5) <= r_RxBitBuffer;
-							WHEN 7 => r_RxData(6) <= r_RxBitBuffer;
-							WHEN 8 => r_RxData(7) <= r_RxBitBuffer;
-							WHEN 9 => r_RxDataParity <=
-								r_RxBitBuffer XOR (
+							WHEN 1 => r_RxData(0) <= r_Rx;
+							WHEN 2 => r_RxData(1) <= r_Rx;
+							WHEN 3 => r_RxData(2) <= r_Rx;
+							WHEN 4 => r_RxData(3) <= r_Rx;
+							WHEN 5 => r_RxData(4) <= r_Rx;
+							WHEN 6 => r_RxData(5) <= r_Rx;
+							WHEN 7 => r_RxData(6) <= r_Rx;
+							WHEN 8 => r_RxData(7) <= r_Rx;
+							WHEN 9 => r_RxDataParity <=	--check parity bit
+								r_Rx XOR (
 								(
 								(r_RxData(0) XOR r_RxData(1))
 								XOR
@@ -144,8 +141,8 @@ BEGIN
 								);
 							WHEN 10 => --STOP BIT ANALISYS
 
-								IF (r_RxBitBuffer = '1') THEN
-									r_RxDataValid <= NOT r_RxDataParity;
+								IF (r_Rx = '1') THEN
+									r_RxDataValid <= NOT r_RxDataParity; --DATA VALID
 								ELSE
 									r_FlagBreakLine <= '1';
 								END IF;
@@ -154,7 +151,8 @@ BEGIN
 
 							WHEN OTHERS => r_State <= s_Idle;
 						END CASE;
-					END IF;
+						
+					END IF; --(r_CntClk = c_DataStorePoint)
 					------------------------------------------------------------
 				WHEN OTHERS => r_State <= s_Idle;
 					------------------------------------------------------------

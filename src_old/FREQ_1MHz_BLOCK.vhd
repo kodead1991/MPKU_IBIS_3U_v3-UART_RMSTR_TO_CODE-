@@ -17,7 +17,7 @@ entity FREQ_1MHz_BLOCK is
 
     architecture arch of FREQ_1MHz_BLOCK is
 
-		constant c_Div				: integer 						:= 25;
+		constant c_Div				: integer 						:= 16;
 		
 		signal r_Cnt 				: integer range 0 to c_Div-1	:= 0;
 

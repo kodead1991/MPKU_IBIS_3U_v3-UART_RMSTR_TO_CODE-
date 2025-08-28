@@ -4,8 +4,11 @@ USE IEEE.STD_LOGIC_arith.ALL;
 USE IEEE.STD_LOGIC_unsigned.ALL;
 USE IEEE.numeric_std.ALL;
 
-ENTITY UART_RXDATA_BLOCK IS
+ENTITY UART_RXDATA_BLOCK_1K IS
 
+	GENERIC (
+		CONSTANT c_BitNum : INTEGER := 10 --4k=12, 2k=11, 1k=10, 0,5k=9 
+	);
 	PORT (
 		i_Clk : IN STD_LOGIC;
 		i_DV : IN STD_LOGIC;
@@ -15,15 +18,15 @@ ENTITY UART_RXDATA_BLOCK IS
 		i_MPU_Data : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 
 		o_RamWE : OUT STD_LOGIC;
-		o_RamAddr : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
+		o_RamAddr : OUT STD_LOGIC_VECTOR(c_BitNum-3 DOWNTO 0);
 		o_RamData : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
 		o_ByteSel : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
 
 		o_RxHead : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
 	);
-END UART_RXDATA_BLOCK;
+END UART_RXDATA_BLOCK_1K;
 
-ARCHITECTURE arch OF UART_RXDATA_BLOCK IS
+ARCHITECTURE arch OF UART_RXDATA_BLOCK_1K IS
 
 	--CONSTANTS
 	CONSTANT c_Addr_UartRxHead : STD_LOGIC_VECTOR(15 DOWNTO 0) := x"1004";
@@ -36,7 +39,7 @@ ARCHITECTURE arch OF UART_RXDATA_BLOCK IS
 	SIGNAL r_State : state := s_Idle;
 
 	--REGS
-	SIGNAL r_RxHead : STD_LOGIC_VECTOR(10 DOWNTO 0) := (OTHERS => '0');
+	SIGNAL r_RxHead : STD_LOGIC_VECTOR(c_BitNum-1 DOWNTO 0) := (OTHERS => '0');
 
 BEGIN
 
@@ -52,11 +55,11 @@ BEGIN
 
 					--RX HEAD RESET
 					IF (i_DataReadyWE = '1') THEN
-						r_RxHead <= i_MPU_Data(10 DOWNTO 0);
+						r_RxHead <= i_MPU_Data(c_BitNum-1 DOWNTO 0);
 					END IF;
 
 					IF (i_DV = '1') THEN
-						o_RamAddr <= r_RxHead(10 DOWNTO 2);
+						o_RamAddr <= r_RxHead(c_BitNum-1 DOWNTO 2);
 						r_State <= s_SetWE;
 					END IF;
 					------------------------------------------------
@@ -86,6 +89,6 @@ BEGIN
 
 	END PROCESS;
 
-	o_RxHead <= x"0000" & ("00000" & r_RxHead);
+	o_RxHead <= x"0000" & (conv_std_logic_vector(0,16-c_BitNum) & r_RxHead);
 
 END arch;

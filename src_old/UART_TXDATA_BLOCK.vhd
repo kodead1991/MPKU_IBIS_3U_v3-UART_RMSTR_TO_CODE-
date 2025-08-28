@@ -18,6 +18,8 @@ ENTITY UART_TXDATA_BLOCK IS
 		i_Addr : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
 		i_DataReadyWE : IN STD_LOGIC;
 		i_MPU_Data : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		
+		i_Reset	: IN STD_LOGIC;
 
 		o_RamRE : OUT STD_LOGIC := '0';
 		o_RamAddr : OUT STD_LOGIC_VECTOR(8 DOWNTO 0) := (OTHERS => '0');
@@ -52,18 +54,25 @@ ARCHITECTURE arch OF UART_TXDATA_BLOCK IS
 
 BEGIN
 
-	PROCESS (i_Clk)
+	PROCESS (i_Reset,i_Clk)
 	BEGIN
 
-		IF rising_edge(i_Clk) THEN
+		IF (i_Reset = '1') THEN
+			
+			--FSM set to IDLE (RESET)
+			r_State <= s_Idle;
+			
+			--TX TAIL DATA UPDATE
+			IF (i_DataReadyWE = '1') THEN
+				r_TxTail <= (others=>'0');
+			END IF;
+			
+		ELSIF rising_edge(i_Clk) THEN
 
+			--FSM
 			CASE r_State IS
 					------------------------------------------------
 				WHEN s_Idle =>
-					IF (i_DataReadyWE = '1') THEN
-						r_TxTail <= i_MPU_Data(10 DOWNTO 0);
-					END IF;
-
 					IF (i_TxStart = '1') THEN
 						r_State <= s_CheckPtr;
 					END IF;
@@ -114,10 +123,11 @@ BEGIN
 					------------------------------------------------
 				WHEN OTHERS => NULL;
 			END CASE;
-
+				
 		END IF;
 
 	END PROCESS;
 
-	o_TxTail <= x"0000" & ("00000" & r_TxTail);
+	o_TxTail <= (31 downto 11 => '0') & r_TxTail;
+	
 END arch;

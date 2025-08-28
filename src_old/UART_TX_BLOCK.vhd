@@ -19,6 +19,10 @@ END UART_TX_BLOCK;
 
 ARCHITECTURE arch OF UART_TX_BLOCK IS
 
+	--CONSTANTS
+	CONSTANT c_BIT_TICKS : INTEGER := 18;
+	CONSTANT c_BIT_NUM : INTEGER := 15;
+	
 	--STATE MACHINES
 	TYPE state IS (
 		s_Idle,
@@ -27,8 +31,8 @@ ARCHITECTURE arch OF UART_TX_BLOCK IS
 	SIGNAL r_State : state := s_Idle;
 
 	--REGS
-	SIGNAL r_ClkCnt : INTEGER RANGE 0 TO 27 := 0;
-	SIGNAL r_BitCnt : INTEGER RANGE 0 TO 15 := 0;
+	SIGNAL r_ClkCnt : INTEGER RANGE 0 TO c_BIT_TICKS - 1 := 0;
+	SIGNAL r_BitCnt : INTEGER RANGE 0 TO c_BIT_NUM := 0;
 	SIGNAL r_CntEn : STD_LOGIC := '0';
 
 BEGIN
@@ -41,7 +45,7 @@ BEGIN
 				r_ClkCnt <= 0;
 				r_BitCnt <= 0;
 			ELSE --TRASNMITION IS GOING
-				IF (r_ClkCnt = 26) THEN
+				IF (r_ClkCnt = c_BIT_TICKS - 1) THEN
 					r_ClkCnt <= 0;
 					r_BitCnt <= r_BitCnt + 1;
 				ELSE

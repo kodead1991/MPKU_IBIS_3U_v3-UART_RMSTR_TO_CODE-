@@ -4,7 +4,7 @@ use IEEE.STD_LOGIC_arith.all;
 use IEEE.STD_LOGIC_unsigned.all;
 USE IEEE.numeric_std.all;	
 
-entity ONE_WIRE_EN_BLOCK is
+entity ADDR_EQUAL_BLOCK is
 	
     port (
             i_Addr	        :in std_logic_vector(15 downto 0);		 
@@ -12,14 +12,14 @@ entity ONE_WIRE_EN_BLOCK is
 
             o_En	    	:out std_logic := '0'         
         );
-    end ONE_WIRE_EN_BLOCK;
+    end ENTITY;
 
 
 
-    architecture arch of ONE_WIRE_EN_BLOCK is
+    architecture arch of ADDR_EQUAL_BLOCK is
 
 	begin
 
-		o_En <= '1' when (i_Addr(15 downto 4) = i_BaseAddr(15 downto 4)) else '0';
+		o_En <= '1' when (i_Addr = i_BaseAddr) else '0';
 
     end arch;
