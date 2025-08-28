@@ -1,1 +1,0 @@
-# MPKU_TIP
