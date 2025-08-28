@@ -1,12 +1,27 @@
-/atom_netlists/
-/db/
-/incremental_db/
-/output/
-/simulation/
-*.bak
+# Quartus generated files
+
 *.html
+*.bsf
+*.qpf
+*.rpt
+*.bak
+*.cmp
+*.done
+*.dpf
+*.eqn
 *.jpg
 *.pof
+*.qdf
+*.qip
+*.qsf
+*.rrbf
 *.sof
-*.summary
-*.rpt
+
+# Quartus directories
+
+/atom_netlists/
+/db/
+/greybox_tmp/
+/incremental_db/
+/simulation/
+/testbench_files/
