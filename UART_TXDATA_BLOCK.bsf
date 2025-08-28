@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 248 208)
+	(rect 16 16 248 240)
 	(text "UART_TXDATA_BLOCK" (rect 5 0 123 12)(font "Arial" ))
-	(text "inst" (rect 8 176 25 188)(font "Arial" ))
+	(text "inst" (rect 8 208 25 220)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -87,6 +87,13 @@ applicable agreement for further details.
 		(line (pt 0 160)(pt 16 160)(line_width 3))
 	)
 	(port
+		(pt 0 176)
+		(input)
+		(text "i_Reset" (rect 0 0 37 12)(font "Arial" ))
+		(text "i_Reset" (rect 21 171 58 183)(font "Arial" ))
+		(line (pt 0 176)(pt 16 176)(line_width 1))
+	)
+	(port
 		(pt 232 32)
 		(output)
 		(text "o_RamRE" (rect 0 0 50 12)(font "Arial" ))
@@ -122,6 +129,6 @@ applicable agreement for further details.
 		(line (pt 232 96)(pt 216 96)(line_width 3))
 	)
 	(drawing
-		(rectangle (rect 16 16 216 176)(line_width 1))
+		(rectangle (rect 16 16 216 208)(line_width 1))
 	)
 )

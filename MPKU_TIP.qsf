@@ -41,7 +41,7 @@ set_global_assignment -name DEVICE EP2C8F256C8
 set_global_assignment -name TOP_LEVEL_ENTITY TOP
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION "9.1 SP2"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:27:23  MARCH 26, 2024"
-set_global_assignment -name LAST_QUARTUS_VERSION "9.1 SP2"
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
 set_global_assignment -name EDA_SIMULATION_TOOL "Active-HDL (VHDL)"
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
@@ -60,6 +60,10 @@ set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 8
 set_global_assignment -name CYCLONEII_M4K_COMPATIBILITY OFF
 set_global_assignment -name LOGICLOCK_INCREMENTAL_COMPILE_ASSIGNMENT ON
 set_global_assignment -name LOGICLOCK_INCREMENTAL_COMPILE_FILE atom_netlists/MPKU_TIP.vqm
+set_global_assignment -name VHDL_FILE MyLib/Debounce_gate.vhd
+set_global_assignment -name VHDL_FILE MyLib/MyLibrary.vhd
+set_global_assignment -name VHDL_FILE MyLib/UART_TX_v1_CNT.vhd
+set_global_assignment -name VHDL_FILE ONE_WIRE_BLOCK_v4_3.vhd
 set_global_assignment -name VHDL_FILE PKU_IN_BLOCK_v2.vhd
 set_global_assignment -name VHDL_FILE ONE_WIRE_BLOCK_v2_2.vhd
 set_global_assignment -name BDF_FILE TOP.bdf
@@ -188,4 +192,50 @@ set_global_assignment -name QIP_FILE CONST_x3820.qip
 set_global_assignment -name VHDL_FILE SEC_MET_EN_BLOCK.vhd
 set_global_assignment -name QIP_FILE SEC_MET_US_CNT.qip
 set_global_assignment -name QIP_FILE CONST_x3821.qip
+set_global_assignment -name QIP_FILE CONST_x2C00.qip
+set_global_assignment -name QIP_FILE CONST_x3400.qip
+set_global_assignment -name QIP_FILE CONST_x3401.qip
+set_global_assignment -name QIP_FILE CONST_x3840.qip
+set_global_assignment -name QIP_FILE CONST_x3860.qip
+set_global_assignment -name QIP_FILE CONST_x3880.qip
+set_global_assignment -name QIP_FILE CONST_x3890.qip
+set_global_assignment -name QIP_FILE CONST_x38A0.qip
+set_global_assignment -name QIP_FILE CONST_x38B0.qip
+set_global_assignment -name VHDL_FILE ONE_WIRE_ID_EN_BLOCK_V2.vhd
+set_global_assignment -name QIP_FILE DPRAM_1WIRE_ID_V2.qip
+set_global_assignment -name QIP_FILE DPRAM_1WIRE_TEMP_V2.qip
+set_global_assignment -name QIP_FILE CONST_x3060.qip
+set_global_assignment -name QIP_FILE CONST_x3030.qip
+set_global_assignment -name VHDL_FILE one_wire_en_block_1_2.vhd
+set_global_assignment -name VHDL_FILE PK_LIST_BLOCK_1_2.vhd
+set_global_assignment -name VHDL_FILE PK_EN_BLOCK.vhd
+set_global_assignment -name VHDL_FILE ADDR_EQUAL_BLOCK.vhd
+set_global_assignment -name QIP_FILE DPRAM_4k.qip
+set_global_assignment -name VHDL_FILE UART_TXDATA_BLOCK_TX_4k.vhd
+set_global_assignment -name BDF_FILE UART_MODULE_TX_4k.bdf
+set_global_assignment -name QIP_FILE DPRAM_1k.qip
+set_global_assignment -name BDF_FILE UART_MODULE_TX_1k.bdf
+set_global_assignment -name VHDL_FILE UART_TXDATA_BLOCK_TX_1k.vhd
+set_global_assignment -name BDF_FILE UART_MODULE_TX_1k_RX_1k.bdf
+set_global_assignment -name VHDL_FILE UART_RXDATA_BLOCK_1K.vhd
+set_global_assignment -name BDF_FILE UART_MODULE_2xTX_1k_2xRX_1k.bdf
+set_global_assignment -name VHDL_FILE UART_TXDATA_BLOCK_TX_2k.vhd
+set_global_assignment -name VHDL_FILE UART_RXDATA_BLOCK_2K.vhd
+set_global_assignment -name VHDL_FILE UART_TXDATA_BLOCK_2k.vhd
+set_global_assignment -name BDF_FILE UART_MODULE_TX_2k_RX_2k.bdf
+set_global_assignment -name BDF_FILE UART_MODULE_TX_4k_RX_05k.bdf
+set_global_assignment -name QIP_FILE DPRAM_05k.qip
+set_global_assignment -name VHDL_FILE UART_RXDATA_BLOCK_05K.vhd
+set_global_assignment -name VHDL_FILE MyLib/DATA_SERIAL_BLOCK.vhd
+set_global_assignment -name VHDL_FILE MyLib/IMIT_DATA_SERIAL_BLOCK.vhd
+set_global_assignment -name QIP_FILE CONST_11223344.qip
+set_global_assignment -name QIP_FILE CONST_x55667788.qip
+set_global_assignment -name BDF_FILE UART_MODULE_NoByteSel.bdf
+set_global_assignment -name QIP_FILE DPRAM_2k_NoByteSel.qip
+set_global_assignment -name VHDL_FILE REG_X32_BLOCK.vhd
+set_global_assignment -name VHDL_FILE TEST_COMMUTATION_BLOCK.vhd
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name QIP_FILE CONST_x6000.qip
+set_global_assignment -name QIP_FILE CONST_x8000.qip
+set_global_assignment -name QIP_FILE CONST_xA000.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
