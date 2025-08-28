@@ -3,6 +3,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity UART_MODULE is
+	generic (
+        g_CLKS_PER_BIT	: integer := 18; -- Количество отсчётов тактовой частоты внутри одного бита UART
+        g_TX_BIT_NUM	: integer := 15 -- Количество бит в посылке TX
+    );
 	Port (
 		-- =====================
 		-- Входные сигналы
@@ -146,18 +150,25 @@ architecture Behavioral of UART_MODULE is
 
     -- БЛОК ВЫДАЧИ ДАННЫХ TX ПО ПРОТОКОЛУ UART
 	component UART_TX_BLOCK
+		generic (
+			g_CLKS_PER_BIT	: integer := g_CLKS_PER_BIT;	-- Количество отсчётов тактовой частоты внутри одного бита UART
+			g_BIT_NUM		: integer := g_TX_BIT_NUM		-- Количество бит в посылке
+		);
 		Port (
 			i_Clk			: in  STD_LOGIC;
 			i_TxDV			: in  STD_LOGIC;
 			i_Data			: in  STD_LOGIC_VECTOR(7 downto 0);
-			o_TX			: out STD_LOGIC;
-			o_TX_Active		: out STD_LOGIC;
+			o_Tx			: out STD_LOGIC;
+			--o_TX_Active		: out STD_LOGIC;			-- не используется
 			o_Ready			: out STD_LOGIC
 		);
 	end component;
 
 	-- БЛОК ПРИЁМА ДАННЫХ RX ПО ПРОТОКОЛУ UART
 	component UART_RX_BLOCK
+		generic (
+			g_CLKS_PER_BIT	: integer := g_CLKS_PER_BIT		-- Количество отсчётов тактовой частоты внутри одного бита UART
+		);
 		Port (
 			i_Clk			: in  STD_LOGIC;
 			i_Reset			: in  STD_LOGIC;
@@ -348,8 +359,8 @@ begin
 			i_Clk			=> MHz,
 			i_TxDV			=> r_TX_DV,
 			i_Data			=> r_TX_DATA,
-			o_TX			=> r_DI,
-			o_TX_Active		=> open,
+			o_Tx			=> r_DI,
+			--o_Tx_Active		=> open,
 			o_Ready			=> r_DRIVER_READY
 		);
 	
