@@ -16,7 +16,7 @@
 *.qsf
 *.rrbf
 *.sof
-*.vhd
+
 *.qws
 *.summary
 *.bdf
