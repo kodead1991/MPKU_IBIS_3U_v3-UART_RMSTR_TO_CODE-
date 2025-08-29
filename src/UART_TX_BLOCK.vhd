@@ -1,114 +1,114 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.NUMERIC_STD.ALL;
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity UART_TX_BLOCK is
     generic (
-        -- Количество отсчётов тактовой частоты внутри одного бита UART
+        -- Number of clock cycles per UART bit
         g_CLKS_PER_BIT	: integer := 18;
         g_BIT_NUM		: integer := 15
     );
-    Port (
+    port (
         -- =====================
-        -- Входные сигналы
+        -- Input signals
         -- =====================
-        i_Clk			: in	STD_LOGIC;						-- Тактовая частота
-        i_TxDV			: in	STD_LOGIC;						-- Сигнал готовности данных для передачи
-        i_Data			: in	STD_LOGIC_VECTOR(7 downto 0);	-- Данные для передачи
+        i_Clk			: in	std_logic;						-- Clock signal
+        i_TxDV			: in	std_logic;						-- Data valid signal for transmission
+        i_Data			: in	std_logic_vector(7 downto 0);	-- Data to transmit
 
         -- =====================
-        -- Выходные сигналы
+        -- Output signals
         -- =====================
-        o_Tx			: out	STD_LOGIC;						-- Линия передачи UART
-        --o_TX_Active		: out	STD_LOGIC;					-- Активность передачи (не используется)
-        o_Ready			: out	STD_LOGIC						-- Готовность к новой передаче
+        o_Tx			: out	std_logic;						-- UART transmit line
+        --o_TX_Active		: out	std_logic;					-- Transmission activity (not used)
+        o_Ready			: out	std_logic						-- Ready for new transmission
     );
 end UART_TX_BLOCK;
 
-architecture Behavioral of UART_TX_BLOCK is
+architecture behavioral of UART_TX_BLOCK is
 
-    -- Конечный автомат передачи
-    TYPE state IS (
-        s_Idle,		-- Ожидание передачи
-        s_TxOut		-- Передача данных
+    -- Transmission state machine
+    type state is (
+        s_Idle,		-- Waiting for transmission
+        s_TxOut		-- Transmitting data
     );
-    SIGNAL r_State		: state := s_Idle;		-- Текущее состояние автомата
-    
-    -- Внутренние сигналы
-    signal r_Tx			: STD_LOGIC := '1';		-- Внутренний сигнал TX
-    signal r_Tx_Active	: STD_LOGIC := '0';		-- Внутренний сигнал активности передачи
-    signal r_Ready		: STD_LOGIC := '1';		-- Внутренний сигнал готовности
+    signal r_State		: state := s_Idle;		-- Current state of the state machine
 
-    SIGNAL r_ClkCnt		: INTEGER RANGE 0 TO g_CLKS_PER_BIT - 1 := 0;	-- Счётчик тактов внутри бита
-    SIGNAL r_BitCnt		: INTEGER RANGE 0 TO g_BIT_NUM := 0;			-- Счётчик битов в посылке
-    SIGNAL r_CntEn		: STD_LOGIC := '0';								-- Разрешение счёта
+    -- Internal signals
+    signal r_Tx			: std_logic := '1';		-- Internal TX signal
+    --signal r_Tx_Active	: std_logic := '0';		-- Internal transmission activity signal
+    signal r_Ready		: std_logic := '1';		-- Internal ready signal
+
+    signal r_ClkCnt		: integer range 0 to g_CLKS_PER_BIT - 1 := 0;	-- Clock counter within bit
+    signal r_BitCnt		: integer range 0 to g_BIT_NUM := 0;			-- Bit counter in packet
+    signal r_CntEn		: std_logic := '0';								-- Counter enable
 
 begin
 
-    -- Процесс формирования тайминга передачи
-    PROCESS (i_Clk)
-    BEGIN
-        IF rising_edge(i_Clk) THEN
-            IF (r_CntEn = '0') THEN
-                r_ClkCnt <= 0;		-- Сброс счётчика тактов
-                r_BitCnt <= 0;		-- Сброс счётчика битов
-            ELSE
-                IF (r_ClkCnt = g_CLKS_PER_BIT - 1) THEN
-                    r_ClkCnt <= 0;				
-                    r_BitCnt <= r_BitCnt + 1;	
-                ELSE
+    -- Transmission timing process
+    process (i_Clk)
+    begin
+        if rising_edge(i_Clk) then
+            if (r_CntEn = '0') then
+                r_ClkCnt <= 0;		-- Reset clock counter
+                r_BitCnt <= 0;		-- Reset bit counter
+            else
+                if (r_ClkCnt = g_CLKS_PER_BIT - 1) then
+                    r_ClkCnt <= 0;
+                    r_BitCnt <= r_BitCnt + 1;
+                else
                     r_ClkCnt <= r_ClkCnt + 1;
-                END IF;
-            END IF;
-        END IF;
-    END PROCESS;
+                end if;
+            end if;
+        end if;
+    end process;
 
-    -- Процесс управления состояниями передачи
-    PROCESS (i_Clk)
-    BEGIN
-        IF falling_edge(i_Clk) THEN
-            CASE (r_State) IS
-				-------------------------
-                -- Ожидание передачи
-				-------------------------
-                WHEN s_Idle =>
-                    o_Tx <= '1';	-- Линия TX в неактивном состоянии
-                    IF (i_TxDV = '1') THEN
-                        r_Ready <= '0';		-- Модуль занят
-                        r_CntEn <= '1';		-- Запуск передачи
-                        r_State <= s_TxOut;	-- Переход к передаче
-                    END IF;
-				-------------------------
-                -- Передача данных
-				-------------------------
-                WHEN s_TxOut =>
-                    CASE (r_BitCnt) IS
-                        WHEN 0		=> r_Tx <= '1';		-- Пауза перед выдачей
-                        WHEN 1		=> r_Tx <= '0';		-- Стартовый бит
-                        WHEN 2		=> r_Tx <= i_Data(0);	-- Бит 0
-                        WHEN 3		=> r_Tx <= i_Data(1);	-- Бит 1
-                        WHEN 4		=> r_Tx <= i_Data(2);	-- Бит 2
-                        WHEN 5		=> r_Tx <= i_Data(3);	-- Бит 3
-                        WHEN 6		=> r_Tx <= i_Data(4);	-- Бит 4
-                        WHEN 7		=> r_Tx <= i_Data(5);	-- Бит 5
-                        WHEN 8		=> r_Tx <= i_Data(6);	-- Бит 6
-                        WHEN 9		=> r_Tx <= i_Data(7);	-- Бит 7
-                        WHEN 10		=> r_Tx <= i_Data(0) XOR i_Data(1) XOR i_Data(2) XOR i_Data(3) XOR i_Data(4) XOR i_Data(5) XOR i_Data(6) XOR i_Data(7); -- Бит четности
-                        WHEN 11		=> r_Tx <= '1';		-- Стоп-бит
-                        WHEN 12 =>
-                            r_Ready <= '1';		-- Модуль готов
-                            r_CntEn <= '0';		-- Остановка передачи
-                            r_State <= s_Idle;	-- Переход в ожидание
-                        WHEN OTHERS => r_Tx <= '1';	-- Остальные биты
-                    END CASE;
-                WHEN OTHERS => NULL;
-            END CASE;
-        END IF;
-    END PROCESS;
+    -- Transmission state control process
+    process (i_Clk)
+    begin
+        if falling_edge(i_Clk) then
+            case (r_State) is
+                -------------------------
+                -- Waiting for transmission
+                -------------------------
+                when s_Idle =>
+                    o_Tx <= '1';	-- TX line in inactive state
+                    if (i_TxDV = '1') then
+                        r_Ready <= '0';		-- Module busy
+                        r_CntEn <= '1';		-- Start transmission
+                        r_State <= s_TxOut;	-- Switch to transmission
+                    end if;
+                -------------------------
+                -- Transmitting data
+                -------------------------
+                when s_TxOut =>
+                    case (r_BitCnt) is
+                        when 0		=> r_Tx <= '1';		-- Pause before output
+                        when 1		=> r_Tx <= '0';		-- Start bit
+                        when 2		=> r_Tx <= i_Data(0);	-- Bit 0
+                        when 3		=> r_Tx <= i_Data(1);	-- Bit 1
+                        when 4		=> r_Tx <= i_Data(2);	-- Bit 2
+                        when 5		=> r_Tx <= i_Data(3);	-- Bit 3
+                        when 6		=> r_Tx <= i_Data(4);	-- Bit 4
+                        when 7		=> r_Tx <= i_Data(5);	-- Bit 5
+                        when 8		=> r_Tx <= i_Data(6);	-- Bit 6
+                        when 9		=> r_Tx <= i_Data(7);	-- Bit 7
+                        when 10		=> r_Tx <= i_Data(0) xor i_Data(1) xor i_Data(2) xor i_Data(3) xor i_Data(4) xor i_Data(5) xor i_Data(6) xor i_Data(7); -- Parity bit
+                        when 11		=> r_Tx <= '1';		-- Stop bit
+                        when 12 =>
+                            r_Ready <= '1';		-- Ready flag for new transmission
+                            r_CntEn <= '0';		-- Stop transmission
+                            r_State <= s_Idle;	-- Switch to waiting
+                        when others => r_Tx <= '1';	-- Other bits
+                    end case;
+                when others => null;
+            end case;
+        end if;
+    end process;
 
-    -- Присвоение выходных сигналов
-    o_TX		<= r_TX;			-- Линия передачи UART
-    --o_TX_Active	<= r_TX_Active;		-- Разрешение на выдачу для микросхемы RS-485
-    o_Ready		<= r_Ready;			-- Готовность к новой передаче
+    -- Output signal assignments
+    o_TX		<= r_TX;			-- UART transmit line
+    --o_TX_Active	<= r_TX_Active;		-- Enable output for RS-485 chip
+    o_Ready		<= r_Ready;			-- Ready
 
-end Behavioral;
+end behavioral;
