@@ -1,0 +1,2 @@
+1) Проверить совемстную работу блоков UART_RX_BLOCK и UART_RXDATA_BLOCK
+сигнал RxDV сделан по фронту rising_edge и принимается в блоке UART_RXDATA_BLOCK по фронту rising_edge
