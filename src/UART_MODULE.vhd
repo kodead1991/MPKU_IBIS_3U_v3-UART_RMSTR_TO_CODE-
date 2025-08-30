@@ -273,6 +273,9 @@ begin
     -- RX DATA PREPARATION BLOCK FOR MEMORY WRITE
     -- =========================================================================
     UART_RXDATA_BLOCK_INST : UART_RXDATA_BLOCK
+        generic map (
+            g_RAM_ADDR_WIDTH => 11    -- RX byte address width
+        )
         port map (
             i_Clk			=> MHz,
             i_DV 			=> r_RX_DV,

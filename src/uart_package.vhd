@@ -41,6 +41,9 @@ package uart_package is
 
     -- RX DATA PREPARATION BLOCK FOR MEMORY WRITE
     component UART_RXDATA_BLOCK
+        generic (
+            g_RAM_ADDR_WIDTH  : integer := 11    -- RX byte address width
+        );
         port (
             i_Clk			: in std_logic;
             i_DV			: in std_logic;
@@ -49,8 +52,8 @@ package uart_package is
             i_RxHead_Data	: in std_logic_vector(31 downto 0);
             o_Ram_WE		: out std_logic;
             o_Ram_Addr		: out std_logic_vector(8 downto 0);
-            o_Ram_Data		: out std_logic_vector(8 downto 0);
-            o_Ram_ByteSel	: out std_logic_vector(8 downto 0);
+            o_Ram_Data		: out std_logic_vector(31 downto 0);
+            o_Ram_ByteSel	: out std_logic_vector(3 downto 0);
             o_RxHead_Data	: out std_logic_vector(31 downto 0)
         );
     end component;
